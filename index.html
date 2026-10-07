@@ -1,0 +1,4801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of U Punya - Software Engineer & Data Science Specialist showcasing projects, skills in C, Java, Python, and career milestones." />
+  <meta name="author" content="U Punya" />
+  <title>U Punya | Software Engineer & Data Scientist</title>
+
+  <!-- Google Fonts: 8-Bit Pixel Art & Modern Font Pairings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ======================================================== */
+    /* 1. THEME TOKENS & SYSTEM CSS MEDIA QUERY DETECTION       */
+    /* ======================================================== */
+    
+    /* Default / Base Light Theme */
+    :root {
+      --bg-base: #f0f4f8;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      
+      /* Pixel Art Aesthetic Variables (Light) */
+      --pixel-font: 'Press Start 2P', monospace;
+      --pixel-subfont: 'VT323', monospace;
+      --pixel-ui-font: 'Silkscreen', monospace;
+      --pixel-border: #0f172a;
+      --pixel-shadow: #64748b;
+      --pixel-accent: #2563eb;
+      --pixel-accent-hover: #1d4ed8;
+      --pixel-accent-glow: rgba(37, 99, 235, 0.3);
+      --pixel-highlight: #f59e0b;
+      --pixel-box-bg: rgba(255, 255, 255, 0.94);
+      --hero-overlay: rgba(240, 244, 248, 0.78);
+      --scanline-opacity: 0.05;
+      --tag-bg: #dbeafe;
+      --tag-text: #1d4ed8;
+      --status-green: #10b981;
+      --nav-active-bg: #eff6ff;
+
+      --sidebar-width: 260px;
+      --transition-speed: 0.25s;
+    }
+
+    /* CSS Media Query: Detect User's Default Browser Theme (Dark Mode) */
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg-base: #0a0d14;
+        --bg-surface: #111726;
+        --bg-surface-elevated: #1a233a;
+        --border-subtle: #2d3748;
+        --text-primary: #f8fafc;
+        --text-secondary: #94a3b8;
+        --text-muted: #64748b;
+
+        /* Pixel Art Aesthetic Variables (Dark / Night) */
+        --pixel-border: #38bdf8;
+        --pixel-shadow: #0369a1;
+        --pixel-accent: #38bdf8;
+        --pixel-accent-hover: #0ea5e9;
+        --pixel-accent-glow: rgba(56, 189, 248, 0.4);
+        --pixel-highlight: #facc15;
+        --pixel-box-bg: rgba(13, 18, 30, 0.92);
+        --hero-overlay: rgba(10, 13, 20, 0.85);
+        --scanline-opacity: 0.12;
+        --tag-bg: rgba(56, 189, 248, 0.15);
+        --tag-text: #7dd3fc;
+        --status-green: #34d399;
+        --nav-active-bg: rgba(56, 189, 248, 0.16);
+      }
+    }
+
+    /* Explicit Manual Override: Forced Dark Theme */
+    [data-theme="dark"] {
+      --bg-base: #0a0d14;
+      --bg-surface: #111726;
+      --bg-surface-elevated: #1a233a;
+      --border-subtle: #2d3748;
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+
+      --pixel-border: #38bdf8;
+      --pixel-shadow: #0369a1;
+      --pixel-accent: #38bdf8;
+      --pixel-accent-hover: #0ea5e9;
+      --pixel-accent-glow: rgba(56, 189, 248, 0.4);
+      --pixel-highlight: #facc15;
+      --pixel-box-bg: rgba(13, 18, 30, 0.92);
+      --hero-overlay: rgba(10, 13, 20, 0.85);
+      --scanline-opacity: 0.12;
+      --tag-bg: rgba(56, 189, 248, 0.15);
+      --tag-text: #7dd3fc;
+      --status-green: #34d399;
+      --nav-active-bg: rgba(56, 189, 248, 0.16);
+    }
+
+    /* Explicit Manual Override: Forced Light Theme */
+    [data-theme="light"] {
+      --bg-base: #f0f4f8;
+      --bg-surface: #ffffff;
+      --bg-surface-elevated: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+
+      --pixel-border: #0f172a;
+      --pixel-shadow: #64748b;
+      --pixel-accent: #2563eb;
+      --pixel-accent-hover: #1d4ed8;
+      --pixel-accent-glow: rgba(37, 99, 235, 0.3);
+      --pixel-highlight: #f59e0b;
+      --pixel-box-bg: rgba(255, 255, 255, 0.94);
+      --hero-overlay: rgba(240, 244, 248, 0.78);
+      --scanline-opacity: 0.05;
+      --tag-bg: #dbeafe;
+      --tag-text: #1d4ed8;
+      --status-green: #10b981;
+      --nav-active-bg: #eff6ff;
+    }
+
+    /* ======================================================== */
+    /* 2. BASE & RESET STYLES                                   */
+    /* ======================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-layout {
+      display: flex;
+      min-height: 100vh;
+      width: 100%;
+    }
+
+    .main-wrapper {
+      flex: 1;
+      margin-left: var(--sidebar-width);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      transition: margin-left var(--transition-speed) ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.75rem;
+    }
+
+    /* ======================================================== */
+    /* 3. VERTICAL NAVIGATION BAR (LEFT SIDE)                   */
+    /* ======================================================== */
+    .vertical-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: var(--sidebar-width);
+      background-color: var(--bg-surface);
+      border-right: 4px solid var(--pixel-border);
+      box-shadow: 6px 0 0 var(--pixel-shadow);
+      z-index: 1200;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 1.5rem 1rem;
+      overflow-y: auto;
+      transition: transform var(--transition-speed) cubic-bezier(0.16, 1, 0.3, 1),
+                  background-color var(--transition-speed) ease,
+                  border-color var(--transition-speed) ease;
+    }
+
+    .vertical-navbar::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, var(--scanline-opacity)) 50%,
+        rgba(0, 0, 0, var(--scanline-opacity))
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .navbar-content-top {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .nav-brand-box {
+      border: 3px solid var(--pixel-border);
+      background: var(--bg-surface-elevated);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      padding: 1rem 0.85rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .nav-brand-title {
+      font-family: var(--pixel-font);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      letter-spacing: -0.05em;
+      display: block;
+      margin-bottom: 0.35rem;
+    }
+
+    .nav-brand-title .brand-accent {
+      color: var(--pixel-accent);
+      text-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    .nav-brand-subtitle {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.35rem;
+    }
+
+    .online-indicator {
+      width: 7px;
+      height: 7px;
+      background-color: var(--status-green);
+      display: inline-block;
+      animation: pixel-blink 1s infinite steps(1);
+    }
+
+    .nav-menu-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu-item {
+      position: relative;
+    }
+
+    .nav-menu-link {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.825rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 0.85rem;
+      color: var(--text-secondary);
+      background: var(--bg-surface);
+      border: 3px solid transparent;
+      transition: all 0.15s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .nav-menu-link .link-left {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .nav-icon {
+      font-family: var(--pixel-font);
+      font-size: 0.75rem;
+      color: var(--pixel-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.1rem;
+    }
+
+    .nav-arrow {
+      font-family: var(--pixel-font);
+      font-size: 0.65rem;
+      color: var(--pixel-highlight);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all 0.15s ease;
+    }
+
+    .nav-menu-link:hover,
+    .nav-menu-link:focus-visible {
+      color: var(--text-primary);
+      border-color: var(--pixel-border);
+      background: var(--bg-surface-elevated);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      transform: translateX(4px);
+    }
+
+    .nav-menu-link:hover .nav-arrow,
+    .nav-menu-link:focus-visible .nav-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .nav-menu-link:focus-visible {
+      outline: 3px dashed var(--pixel-highlight);
+      outline-offset: 2px;
+    }
+
+    .nav-menu-link.active {
+      color: var(--text-primary);
+      background: var(--nav-active-bg);
+      border-color: var(--pixel-border);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      transform: translateX(4px);
+    }
+
+    .nav-menu-link.active .nav-arrow {
+      opacity: 1;
+      transform: translateX(0);
+      color: var(--pixel-accent);
+    }
+
+    .nav-menu-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+    }
+
+    .navbar-content-bottom {
+      position: relative;
+      z-index: 2;
+      border-top: 2px dashed var(--pixel-border);
+      padding-top: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .nav-control-label {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .theme-toggle-btn {
+      font-family: var(--pixel-font);
+      font-size: 0.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border: 3px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      padding: 0.65rem 0.75rem;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      user-select: none;
+      width: 100%;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--pixel-box-bg);
+      transform: translate(-1px, -1px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+    }
+
+    .theme-toggle-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    .theme-mode-badge {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      color: var(--pixel-highlight);
+    }
+
+    .nav-system-status {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-align: center;
+      background: var(--bg-surface-elevated);
+      padding: 0.35rem;
+      border: 1px solid var(--border-subtle);
+    }
+
+    /* ======================================================== */
+    /* 4. MOBILE TOP BAR & RESPONSIVE DRAWER                    */
+    /* ======================================================== */
+    .mobile-header {
+      display: none;
+      position: sticky;
+      top: 0;
+      z-index: 1100;
+      background: var(--bg-surface);
+      border-bottom: 3px solid var(--pixel-border);
+      box-shadow: 0 4px 0 var(--pixel-shadow);
+      padding: 0.85rem 1.25rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mobile-brand {
+      font-family: var(--pixel-font);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+    }
+
+    .mobile-brand-accent {
+      color: var(--pixel-accent);
+    }
+
+    .mobile-menu-btn {
+      font-family: var(--pixel-font);
+      font-size: 0.7rem;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border: 3px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      padding: 0.5rem 0.85rem;
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+
+    .mobile-menu-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    .sidebar-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(2px);
+      z-index: 1150;
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
+
+    .sidebar-backdrop.active {
+      display: block;
+      opacity: 1;
+    }
+
+    /* ======================================================== */
+    /* 5. PIXEL ART HERO SECTION                                */
+    /* ======================================================== */
+    .hero-section {
+      position: relative;
+      background-image: url('WhatsApp%20Image%202026-10-07%20at%208.47.31%20AM.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 4.5rem 0 5.5rem;
+      overflow: hidden;
+      border-bottom: 4px solid var(--pixel-border);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: var(--hero-overlay);
+      backdrop-filter: blur(3px);
+      z-index: 1;
+    }
+
+    .hero-scanlines {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0),
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, var(--scanline-opacity)) 50%,
+        rgba(0, 0, 0, var(--scanline-opacity))
+      );
+      background-size: 100% 4px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-container {
+      position: relative;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1.25fr 0.85fr;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .pixel-window {
+      background: var(--pixel-box-bg);
+      border: 4px solid var(--pixel-border);
+      box-shadow: 8px 8px 0px var(--pixel-shadow);
+      padding: 2rem;
+      position: relative;
+    }
+
+    .pixel-window::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      width: 8px;
+      height: 8px;
+      background: var(--pixel-highlight);
+      box-shadow: 0 0 6px var(--pixel-highlight);
+    }
+
+    .pixel-window::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      right: -8px;
+      width: 8px;
+      height: 8px;
+      background: var(--pixel-accent);
+      box-shadow: 0 0 6px var(--pixel-accent);
+    }
+
+    .hud-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px dashed var(--pixel-border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+    }
+
+    .hud-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--status-green);
+    }
+
+    .blinking-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--status-green);
+      display: inline-block;
+      animation: pixel-blink 1s infinite steps(1);
+    }
+
+    .hud-level {
+      color: var(--pixel-highlight);
+    }
+
+    .hero-welcome-badge {
+      display: inline-block;
+      font-family: var(--pixel-font);
+      font-size: 0.65rem;
+      background: var(--pixel-accent);
+      color: #ffffff;
+      padding: 0.4rem 0.65rem;
+      margin-bottom: 1.25rem;
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+      letter-spacing: 0.05em;
+    }
+
+    .hero-title {
+      font-family: var(--pixel-font);
+      font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title .pixel-highlight-name {
+      color: var(--pixel-accent);
+      text-shadow: 2px 2px 0 var(--pixel-shadow);
+      display: block;
+      margin-top: 0.35rem;
+    }
+
+    .hero-tagline {
+      font-family: var(--pixel-subfont);
+      font-size: 1.55rem;
+      color: var(--text-secondary);
+      line-height: 1.35;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-tagline .cursor-blink {
+      display: inline-block;
+      animation: pixel-blink 0.8s infinite steps(1);
+      color: var(--pixel-accent);
+      font-weight: bold;
+    }
+
+    .hero-pitch {
+      font-size: 0.975rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+
+    .pixel-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.75rem;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.68rem;
+    }
+
+    .stat-card {
+      border: 2px solid var(--pixel-border);
+      background: var(--bg-surface-elevated);
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      display: block;
+      font-size: 0.58rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-val {
+      color: var(--pixel-highlight);
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .pixel-btn {
+      font-family: var(--pixel-font);
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.4rem;
+      border: 3px solid var(--pixel-border);
+      box-shadow: 4px 4px 0px var(--pixel-shadow);
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+      user-select: none;
+    }
+
+    .pixel-btn-primary {
+      background: var(--pixel-accent);
+      color: #ffffff;
+    }
+
+    .pixel-btn-primary:hover {
+      background: var(--pixel-accent-hover);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--pixel-shadow);
+    }
+
+    .pixel-btn-primary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--pixel-shadow);
+    }
+
+    .pixel-btn-secondary {
+      background: var(--bg-surface);
+      color: var(--text-primary);
+    }
+
+    .pixel-btn-secondary:hover {
+      background: var(--bg-surface-elevated);
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px var(--pixel-shadow);
+    }
+
+    .pixel-btn-secondary:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px var(--pixel-shadow);
+    }
+
+    .pixel-profile-card {
+      background: var(--pixel-box-bg);
+      border: 4px solid var(--pixel-border);
+      box-shadow: 8px 8px 0px var(--pixel-shadow);
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .avatar-frame {
+      position: relative;
+      width: 220px;
+      height: 250px;
+      margin: 0 auto 1.25rem;
+      border: 4px solid var(--pixel-border);
+      box-shadow: 4px 4px 0px var(--pixel-shadow);
+      overflow: hidden;
+      background: var(--bg-surface-elevated);
+    }
+
+    .avatar-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .avatar-frame:hover img {
+      transform: scale(1.05);
+    }
+
+    .avatar-level-badge {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--pixel-highlight);
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      padding: 0.35rem;
+      border-top: 2px solid var(--pixel-border);
+    }
+
+    .character-info h3 {
+      font-family: var(--pixel-font);
+      font-size: 0.85rem;
+      margin-bottom: 0.4rem;
+      color: var(--text-primary);
+    }
+
+    .character-role {
+      font-family: var(--pixel-subfont);
+      font-size: 1.2rem;
+      color: var(--pixel-accent);
+      margin-bottom: 0.85rem;
+    }
+
+    .pixel-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.4rem;
+    }
+
+    .pixel-chip {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      padding: 0.25rem 0.5rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+    }
+
+    @keyframes pixel-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    /* ======================================================== */
+    /* 6. ABOUT ME SECTION                                      */
+    /* ======================================================== */
+    .about-section {
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 2.25rem;
+      align-items: start;
+    }
+
+    .about-profile-card {
+      background: var(--pixel-box-bg);
+      border: 3px solid var(--pixel-border);
+      box-shadow: 6px 6px 0 var(--pixel-shadow);
+      padding: 1.5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .about-avatar-wrapper {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 1.25rem;
+      border: 4px solid var(--pixel-border);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      overflow: hidden;
+      background: var(--bg-surface-elevated);
+    }
+
+    .about-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .about-avatar-wrapper:hover .about-avatar-img {
+      transform: scale(1.04);
+    }
+
+    .about-avatar-tag {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--pixel-highlight);
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      padding: 0.35rem;
+      border-top: 2px solid var(--pixel-border);
+    }
+
+    .about-meta-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.25rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      text-align: left;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.68rem;
+    }
+
+    .about-meta-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px dashed var(--border-subtle);
+      padding-bottom: 0.35rem;
+    }
+
+    .about-meta-key {
+      color: var(--text-muted);
+    }
+
+    .about-meta-val {
+      color: var(--pixel-accent);
+      font-weight: 700;
+    }
+
+    .about-profile-btn {
+      width: 100%;
+      font-size: 0.65rem;
+      padding: 0.65rem;
+    }
+
+    .about-content-deck {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .about-bio-box {
+      background: var(--pixel-box-bg);
+      border: 3px solid var(--pixel-border);
+      box-shadow: 6px 6px 0 var(--pixel-shadow);
+      padding: 1.75rem 2rem;
+      position: relative;
+    }
+
+    .about-bio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px dashed var(--pixel-border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.25rem;
+      font-family: var(--pixel-ui-font);
+    }
+
+    .about-greeting-title {
+      font-family: var(--pixel-font);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .about-status-pill {
+      font-size: 0.65rem;
+      color: var(--status-green);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .about-bio-text {
+      font-size: 0.985rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .about-bio-text strong {
+      color: var(--text-primary);
+    }
+
+    .about-bio-text:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .highlights-title {
+      font-family: var(--pixel-font);
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .highlight-card {
+      border: 2px solid var(--pixel-border);
+      background: var(--bg-surface-elevated);
+      padding: 1.1rem;
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 5px 5px 0 var(--pixel-shadow);
+      border-color: var(--pixel-accent);
+    }
+
+    .highlight-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .highlight-card-icon {
+      font-family: var(--pixel-font);
+      font-size: 0.8rem;
+      color: var(--pixel-highlight);
+    }
+
+    .highlight-card-title {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.78rem;
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    .highlight-card-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    .interests-box {
+      border: 2px dashed var(--pixel-border);
+      background: var(--bg-surface-elevated);
+      padding: 1.25rem 1.5rem;
+    }
+
+    .interests-title {
+      font-family: var(--pixel-font);
+      font-size: 0.75rem;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .interests-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+    }
+
+    .interest-chip {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+      padding: 0.35rem 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ======================================================== */
+    /* 7. SKILLS SECTION (PIXEL ART GAUGES & COMPETENCIES)      */
+    /* ======================================================== */
+    .skills-section {
+      background: var(--bg-surface-elevated);
+      position: relative;
+    }
+
+    .skills-filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 2.75rem;
+    }
+
+    .skill-filter-btn {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--bg-surface);
+      color: var(--text-secondary);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .skill-filter-btn:hover {
+      color: var(--text-primary);
+      background: var(--nav-active-bg);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      border-color: var(--pixel-accent);
+    }
+
+    .skill-filter-btn.active {
+      background: var(--pixel-accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      border-color: var(--pixel-border);
+    }
+
+    .skill-filter-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    .skills-category-group {
+      margin-bottom: 3rem;
+      transition: opacity 0.25s ease;
+    }
+
+    .skills-category-group:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .skills-category-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px dashed var(--pixel-border);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skills-category-title {
+      font-family: var(--pixel-font);
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skills-category-badge {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      color: var(--pixel-highlight);
+    }
+
+    .skills-grid-layout {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--pixel-box-bg);
+      border: 3px solid var(--pixel-border);
+      box-shadow: 5px 5px 0 var(--pixel-shadow);
+      padding: 1.35rem 1.5rem;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 7px 7px 0 var(--pixel-shadow);
+      border-color: var(--pixel-accent);
+    }
+
+    .skill-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-identity {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .skill-icon-box {
+      width: 42px;
+      height: 42px;
+      background: var(--bg-surface-elevated);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--pixel-font);
+      font-size: 0.85rem;
+      color: var(--pixel-accent);
+      flex-shrink: 0;
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .skill-card:hover .skill-icon-box {
+      transform: rotate(6deg) scale(1.08);
+      background: var(--pixel-accent);
+      color: #ffffff;
+    }
+
+    .skill-name-group h4 {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.15rem;
+    }
+
+    .skill-role-tag {
+      font-family: var(--pixel-subfont);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .skill-level-pill {
+      font-family: var(--pixel-font);
+      font-size: 0.62rem;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--pixel-border);
+      padding: 0.3rem 0.5rem;
+      color: var(--pixel-highlight);
+    }
+
+    .skill-progress-container {
+      margin: 1rem 0;
+    }
+
+    .skill-progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.68rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+
+    .skill-pct-val {
+      font-family: var(--pixel-font);
+      font-size: 0.62rem;
+      color: var(--pixel-accent);
+      font-weight: 700;
+    }
+
+    .pixel-progress-track {
+      height: 14px;
+      background: var(--bg-surface-elevated);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+      padding: 2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pixel-progress-fill {
+      height: 100%;
+      background: var(--pixel-accent);
+      background-image: repeating-linear-gradient(
+        90deg,
+        var(--pixel-accent),
+        var(--pixel-accent) 8px,
+        rgba(0, 0, 0, 0.15) 8px,
+        rgba(0, 0, 0, 0.15) 12px
+      );
+      transition: width 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      position: relative;
+    }
+
+    .skill-card:hover .pixel-progress-fill {
+      background: var(--pixel-accent-hover);
+      box-shadow: 0 0 10px var(--pixel-accent-glow);
+    }
+
+    .skill-subcompetencies {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.75rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .sub-comp-tag {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 0.25rem 0.45rem;
+      border: 1px solid var(--pixel-border);
+    }
+
+    /* ======================================================== */
+    /* 8. TIMELINE SECTION (ROUNDED CARDS & SMOOTH TRANSITIONS) */
+    /* ======================================================== */
+    .timeline-section {
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .timeline-filter-bar {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 3rem;
+    }
+
+    .timeline-filter-btn {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--bg-surface-elevated);
+      color: var(--text-secondary);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .timeline-filter-btn:hover {
+      color: var(--text-primary);
+      background: var(--nav-active-bg);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      border-color: var(--pixel-accent);
+    }
+
+    .timeline-filter-btn.active {
+      background: var(--pixel-accent);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      border-color: var(--pixel-border);
+    }
+
+    .timeline-filter-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    .timeline-wrapper {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 1rem 0 1rem 2.25rem;
+    }
+
+    .timeline-spine {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 31px;
+      width: 4px;
+      background: linear-gradient(
+        to bottom,
+        var(--pixel-accent) 0%,
+        var(--pixel-highlight) 50%,
+        var(--pixel-border) 100%
+      );
+      box-shadow: 0 0 8px var(--pixel-accent-glow);
+      border-radius: 4px;
+    }
+
+    .timeline-items-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.75rem;
+      transition: opacity 0.25s ease;
+    }
+
+    .timeline-marker {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg-surface);
+      border: 3px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      z-index: 2;
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                  box-shadow 0.3s ease,
+                  border-color 0.3s ease,
+                  background-color 0.3s ease;
+    }
+
+    .timeline-item:hover .timeline-marker {
+      transform: scale(1.18);
+      border-color: var(--pixel-accent);
+      box-shadow: 0 0 14px var(--pixel-accent-glow), 3px 3px 0 var(--pixel-shadow);
+      background: var(--bg-surface-elevated);
+    }
+
+    .timeline-card {
+      flex: 1;
+      background: var(--pixel-box-bg);
+      border: 2px solid var(--border-subtle);
+      border-radius: 16px;
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+      padding: 1.75rem 2rem;
+      position: relative;
+      transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+                  box-shadow 0.28s ease,
+                  border-color 0.28s ease,
+                  background-color 0.28s ease;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 8px 8px 0 var(--pixel-shadow), 0 0 16px var(--pixel-accent-glow);
+      border-color: var(--pixel-accent);
+    }
+
+    .timeline-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .timeline-type-badge {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      border: 1px solid var(--pixel-border);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .badge-education {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border-color: var(--pixel-accent);
+    }
+
+    .badge-project {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--pixel-highlight);
+      border-color: var(--pixel-highlight);
+    }
+
+    .timeline-date-pill {
+      font-family: var(--pixel-font);
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      padding: 0.35rem 0.65rem;
+      border-radius: 9999px;
+    }
+
+    .timeline-event-title {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .timeline-event-institution {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+      color: var(--pixel-accent);
+      margin-bottom: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .timeline-event-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+
+    .timeline-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .timeline-pill {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      background: var(--bg-surface-elevated);
+      color: var(--text-secondary);
+      border: 1px solid var(--border-subtle);
+      padding: 0.25rem 0.55rem;
+      border-radius: 9999px;
+      transition: all 0.15s ease;
+    }
+
+    .timeline-card:hover .timeline-pill {
+      border-color: var(--pixel-border);
+      color: var(--text-primary);
+    }
+
+    /* ======================================================== */
+    /* 9. PROJECTS SECTION & THUMBNAIL MODAL VIEW               */
+    /* ======================================================== */
+    .projects-section {
+      background: var(--bg-surface-elevated);
+      position: relative;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    /* Project Card */
+    .project-card {
+      background: var(--pixel-box-bg);
+      border: 3px solid var(--pixel-border);
+      border-radius: 12px;
+      box-shadow: 6px 6px 0 var(--pixel-shadow);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      position: relative;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 8px 8px 0 var(--pixel-shadow), 0 0 16px var(--pixel-accent-glow);
+      border-color: var(--pixel-accent);
+    }
+
+    /* Thumbnail Box (Clickable for Detailed View) */
+    .project-thumb-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 2px solid var(--pixel-border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      cursor: pointer;
+      background: var(--bg-surface);
+      outline: none;
+    }
+
+    .project-thumb-box:focus-visible {
+      outline: 3px dashed var(--pixel-highlight);
+      outline-offset: 3px;
+    }
+
+    .project-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .project-card:hover .project-thumb-img,
+    .project-thumb-box:hover .project-thumb-img {
+      transform: scale(1.06);
+    }
+
+    /* Hover overlay badge on thumbnail */
+    .project-thumb-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(2px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .project-thumb-box:hover .project-thumb-overlay,
+    .project-thumb-box:focus-visible .project-thumb-overlay {
+      opacity: 1;
+    }
+
+    .project-thumb-prompt {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--pixel-accent);
+      color: #ffffff;
+      padding: 0.45rem 0.9rem;
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+      border-radius: 6px;
+      transform: translateY(4px);
+      transition: transform 0.2s ease;
+    }
+
+    .project-thumb-box:hover .project-thumb-prompt {
+      transform: translateY(0);
+    }
+
+    .project-meta-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-category-badge {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      color: var(--pixel-accent);
+      background: var(--tag-bg);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .project-status-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      color: var(--status-green);
+    }
+
+    .project-title {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-summary {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .project-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px dashed var(--border-subtle);
+    }
+
+    .project-tech-tag {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.62rem;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      padding: 0.25rem 0.5rem;
+      border: 1px solid var(--border-subtle);
+      border-radius: 4px;
+    }
+
+    .project-action-row {
+      display: flex;
+      gap: 0.65rem;
+      align-items: center;
+    }
+
+    .project-btn-details {
+      flex: 1;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.65rem 0.85rem;
+      background: var(--pixel-accent);
+      color: #ffffff;
+      border: 2px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s ease;
+      user-select: none;
+    }
+
+    .project-btn-details:hover {
+      background: var(--pixel-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+    }
+
+    .project-btn-details:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    .project-link-icon {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.65rem 0.85rem;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+
+    .project-link-icon:hover {
+      border-color: var(--pixel-accent);
+      color: var(--pixel-accent);
+      transform: translateY(-2px);
+      box-shadow: 4px 4px 0 var(--pixel-shadow);
+    }
+
+    /* Modal Detailed View */
+    .project-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 1500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .project-modal-backdrop.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .project-modal-card {
+      background: var(--bg-surface);
+      border: 4px solid var(--pixel-border);
+      border-radius: 16px;
+      box-shadow: 10px 10px 0 var(--pixel-shadow);
+      max-width: 760px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 2rem;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .project-modal-backdrop.active .project-modal-card {
+      transform: scale(1);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      border: 2px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+
+    .modal-header-banner {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 3px solid var(--pixel-border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--bg-surface-elevated);
+    }
+
+    .modal-header-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-project-title {
+      font-family: 'Outfit', 'Inter', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .modal-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .modal-section-heading {
+      font-family: var(--pixel-font);
+      font-size: 0.8rem;
+      color: var(--pixel-accent);
+      margin: 1.25rem 0 0.5rem 0;
+    }
+
+    .modal-desc-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .modal-features-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .modal-features-list li {
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .modal-features-list li span.bullet {
+      color: var(--pixel-highlight);
+      font-family: var(--pixel-font);
+      font-size: 0.75rem;
+    }
+
+    .modal-action-bar {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-top: 1.25rem;
+      border-top: 2px dashed var(--pixel-border);
+    }
+
+    /* ======================================================== */
+    /* 10. PIXEL ART CHAT SECTION (#chat)                       */
+    /* ======================================================== */
+    .chat-section {
+      background: var(--bg-surface);
+    }
+
+    .chat-terminal-container {
+      max-width: 780px;
+      margin: 0 auto;
+      border: 4px solid var(--pixel-border);
+      background: var(--pixel-box-bg);
+      box-shadow: 8px 8px 0 var(--pixel-shadow);
+    }
+
+    .chat-terminal-header {
+      background: var(--pixel-border);
+      color: #ffffff;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .chat-log {
+      padding: 1.5rem;
+      max-height: 320px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-family: var(--pixel-subfont);
+      font-size: 1.25rem;
+    }
+
+    .chat-msg {
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--pixel-border);
+      max-width: 85%;
+      line-height: 1.4;
+    }
+
+    .chat-msg-bot {
+      align-self: flex-start;
+      background: var(--bg-surface);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+    }
+
+    .chat-msg-user {
+      align-self: flex-end;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+    }
+
+    .chat-msg-author {
+      font-family: var(--pixel-font);
+      font-size: 0.65rem;
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--pixel-accent);
+    }
+
+    .chat-prompts-bar {
+      padding: 0.75rem 1.25rem;
+      border-top: 2px dashed var(--pixel-border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      background: var(--bg-surface);
+    }
+
+    .prompt-chip {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      background: var(--bg-surface-elevated);
+      border: 2px solid var(--pixel-border);
+      color: var(--text-primary);
+      padding: 0.4rem 0.65rem;
+      cursor: pointer;
+      transition: all 0.1s ease;
+    }
+
+    .prompt-chip:hover {
+      background: var(--pixel-accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+    }
+
+    .chat-input-bar {
+      padding: 1rem 1.25rem;
+      border-top: 3px solid var(--pixel-border);
+      display: flex;
+      gap: 0.75rem;
+      background: var(--bg-surface);
+    }
+
+    .chat-input {
+      flex: 1;
+      font-family: var(--pixel-subfont);
+      font-size: 1.25rem;
+      padding: 0.6rem 0.85rem;
+      border: 3px solid var(--pixel-border);
+      background: var(--bg-surface-elevated);
+      color: var(--text-primary);
+      outline: none;
+    }
+
+    .chat-input:focus {
+      border-color: var(--pixel-accent);
+      box-shadow: 0 0 0 2px var(--pixel-accent-glow);
+    }
+
+    .chat-send-btn {
+      font-family: var(--pixel-font);
+      font-size: 0.65rem;
+      padding: 0.6rem 1rem;
+      background: var(--pixel-accent);
+      color: #ffffff;
+      border: 3px solid var(--pixel-border);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      cursor: pointer;
+    }
+
+    .chat-send-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--bg-surface);
+      border-top: 3px solid var(--pixel-border);
+      padding: 2.5rem 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--pixel-ui-font);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      margin-bottom: 1rem;
+      list-style: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--pixel-accent);
+    }
+
+    /* Nav brand shrink-on-scroll (triggered via JS when scrollY > 80px) */
+    .nav-brand-box.scrolled .nav-brand-title {
+      font-size: 0.65rem; /* Slightly smaller when scrolled for depth effect */
+      opacity: 0.9;
+      transition: font-size 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .mobile-header {
+        display: flex;
+      }
+
+      .vertical-navbar {
+        transform: translateX(-100%);
+        width: 280px;
+      }
+
+      .vertical-navbar.open {
+        transform: translateX(0);
+      }
+
+      .main-wrapper {
+        margin-left: 0;
+      }
+
+      .hero-container {
+        grid-template-columns: 1fr;
+      }
+
+      .avatar-frame {
+        width: 180px;
+        height: 200px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-profile-card {
+        max-width: 400px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .skills-grid-layout,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-wrapper {
+        padding-left: 0.5rem;
+      }
+
+      .timeline-spine {
+        left: 20px;
+      }
+
+      .timeline-marker {
+        width: 38px;
+        height: 38px;
+        font-size: 1rem;
+      }
+
+      .timeline-item {
+        gap: 1rem;
+      }
+
+      .timeline-card {
+        padding: 1.25rem 1.25rem;
+        border-radius: 12px;
+      }
+
+      .project-modal-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* ======================================================== */
+    /* 11. VIDEO SHOWCASE SECTION                                */
+    /* Responsive video embed with pixel-art CRT monitor frame   */
+    /* ======================================================== */
+    .video-section {
+      background: var(--bg-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle animated background shimmer – parallax-style depth effect */
+    .video-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        transparent 0%,
+        var(--pixel-accent-glow) 50%,
+        transparent 100%
+      );
+      background-size: 400% 400%;
+      animation: shimmer-bg 8s ease infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Shimmer keyframe – creates subtle moving highlight behind section */
+    @keyframes shimmer-bg {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .video-section .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* CRT Monitor wrapper – pixel art bezel frame around video */
+    .video-crt-frame {
+      position: relative;
+      background: var(--pixel-border);
+      border: 4px solid var(--pixel-border);
+      border-radius: 16px;
+      box-shadow:
+        8px 8px 0 var(--pixel-shadow),
+        0 0 32px var(--pixel-accent-glow),
+        inset 0 0 20px rgba(0,0,0,0.3);
+      padding: 16px 16px 36px;  /* extra bottom for screen glow bar */
+      max-width: 900px;
+      margin: 0 auto;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+
+    .video-crt-frame:hover {
+      /* Glow intensifies on hover – like a CRT warming up */
+      box-shadow:
+        10px 10px 0 var(--pixel-shadow),
+        0 0 52px var(--pixel-accent-glow),
+        inset 0 0 20px rgba(0,0,0,0.3);
+      transform: translateY(-4px);
+    }
+
+    /* Power/status LED strip at bottom of CRT bezel */
+    .video-crt-frame::after {
+      content: '● REC  ◆ LIVE  ▶ PLAY';
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--pixel-ui-font);
+      font-size: 0.55rem;
+      color: var(--status-green);
+      letter-spacing: 0.15rem;
+      white-space: nowrap;
+    }
+
+    /* Responsive aspect-ratio container: always 16:9 regardless of width */
+    .video-responsive-container {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 3px solid var(--pixel-border);
+      background: #000;
+    }
+
+    /* Scanline overlay for CRT screen effect on video */
+    .video-responsive-container::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .portfolio-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Video caption container */
+    .video-caption-box {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .video-caption-tag {
+      display: inline-block;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      color: var(--pixel-accent);
+      background: var(--tag-bg);
+      border: 2px solid var(--pixel-accent);
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 0.75rem;
+      border-radius: 4px;
+    }
+
+    .video-caption-title {
+      font-family: var(--pixel-font);
+      font-size: 0.8rem;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    .video-caption-desc {
+      font-family: var(--pixel-subfont);
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ======================================================== */
+    /* 12. TESTIMONIALS SECTION                                  */
+    /* Card layout with drop shadow, rounded corners, clean type */
+    /* ======================================================== */
+    .testimonials-section {
+      background: var(--bg-surface);
+      position: relative;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      /* Responsive columns: min 280px wide, fills space evenly */
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+    }
+
+    /* Individual testimonial card */
+    .testimonial-card {
+      background: var(--pixel-box-bg);
+      border: 2px solid var(--border-subtle);
+      /* Rounded corners for a clean, premium feel */
+      border-radius: 16px;
+      /* Subtle multi-layer drop shadow for depth */
+      box-shadow:
+        0 4px 6px rgba(0,0,0,0.07),
+        0 10px 24px rgba(0,0,0,0.06),
+        4px 4px 0 var(--pixel-shadow);
+      padding: 2rem 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      position: relative;
+      transition:
+        transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+    }
+
+    /* Hover lift effect – premium interactive feel */
+    .testimonial-card:hover {
+      transform: translateY(-7px);
+      box-shadow:
+        0 8px 16px rgba(0,0,0,0.1),
+        0 20px 40px rgba(0,0,0,0.08),
+        6px 6px 0 var(--pixel-shadow),
+        0 0 20px var(--pixel-accent-glow);
+      border-color: var(--pixel-accent);
+    }
+
+    /* Large decorative opening quote mark */
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      right: 1.25rem;
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      line-height: 1;
+      color: var(--pixel-accent);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    /* Star rating row */
+    .testimonial-stars {
+      display: flex;
+      gap: 0.2rem;
+      font-size: 0.9rem;
+    }
+
+    .star { color: var(--pixel-highlight); }
+    .star-empty { color: var(--border-subtle); }
+
+    /* Quote text – clean, readable typography */
+    .testimonial-quote {
+      font-family: var(--pixel-subfont);
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-style: italic;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Horizontal divider rule */
+    .testimonial-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--pixel-accent);
+      border: none;
+      border-radius: 2px;
+      margin: 0;
+    }
+
+    /* Author row: avatar + name/role stacked */
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .testimonial-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 8px; /* Square avatar with slight rounding – pixel art style */
+      border: 2px solid var(--pixel-border);
+      box-shadow: 2px 2px 0 var(--pixel-shadow);
+      background: var(--bg-surface-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--pixel-font);
+      font-size: 0.55rem;
+      color: var(--pixel-accent);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .testimonial-name {
+      font-family: var(--pixel-ui-font);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .testimonial-role {
+      font-family: var(--pixel-subfont);
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .testimonial-relation-tag {
+      display: inline-block;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.55rem;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid var(--border-subtle);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      margin-top: 0.2rem;
+    }
+
+    /* ======================================================== */
+    /* 13. ENHANCED FOOTER WITH SOCIAL MEDIA ICONS              */
+    /* Pixel art social icon row with hover color effects        */
+    /* ======================================================== */
+
+    /* Social links row */
+    .footer-social-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Individual social icon link */
+    .footer-social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 46px;
+      height: 46px;
+      border: 2px solid var(--pixel-border);
+      border-radius: 8px; /* Pixel art square icon with slight radius */
+      background: var(--bg-surface-elevated);
+      box-shadow: 3px 3px 0 var(--pixel-shadow);
+      text-decoration: none;
+      font-size: 1.3rem;
+      line-height: 1;
+      position: relative;
+      transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    /* 3D press-down effect on click */
+    .footer-social-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--pixel-shadow);
+    }
+
+    /* Per-platform hover colors (brand colors) */
+    .footer-social-link:hover {
+      transform: translateY(-4px);
+      box-shadow: 5px 5px 0 var(--pixel-shadow), 0 0 16px var(--pixel-accent-glow);
+    }
+
+    .footer-social-link[data-platform="github"]:hover {
+      background: #24292e;
+      border-color: #24292e;
+      color: #ffffff;
+    }
+
+    .footer-social-link[data-platform="linkedin"]:hover {
+      background: #0077b5;
+      border-color: #0077b5;
+    }
+
+    .footer-social-link[data-platform="email"]:hover {
+      background: #ea4335;
+      border-color: #ea4335;
+    }
+
+    .footer-social-link[data-platform="twitter"]:hover {
+      background: #1da1f2;
+      border-color: #1da1f2;
+    }
+
+    /* Tooltip label that appears on hover */
+    .footer-social-link::after {
+      content: attr(data-label);
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: var(--pixel-border);
+      color: var(--bg-surface);
+      font-family: var(--pixel-ui-font);
+      font-size: 0.55rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .footer-social-link:hover::after {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Footer tagline */
+    .footer-tagline {
+      font-family: var(--pixel-subfont);
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Back to top button in footer */
+    .footer-back-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--pixel-ui-font);
+      font-size: 0.65rem;
+      color: var(--pixel-accent);
+      background: none;
+      border: 2px solid var(--pixel-accent);
+      padding: 0.4rem 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+      margin-top: 1rem;
+      border-radius: 4px;
+      transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    }
+
+    .footer-back-top:hover {
+      background: var(--pixel-accent);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* ======================================================== */
+    /* 14. SCROLL-REVEAL ANIMATION SYSTEM                        */
+    /* Elements fade + slide up when scrolled into view          */
+    /* ======================================================== */
+
+    /* Initial hidden state for scroll-reveal elements */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    /* When IntersectionObserver adds this class, element animates in */
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered delays for child elements in a group */
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ======================================================== */
+    /* 15. MICRO-ANIMATION: BUTTON PULSE ON FOCUS               */
+    /* Pixel-art "selected" glow ring on focused buttons         */
+    /* ======================================================== */
+    .pixel-btn:focus-visible,
+    .project-btn-details:focus-visible,
+    .skill-filter-btn:focus-visible {
+      outline: 3px dashed var(--pixel-highlight);
+      outline-offset: 3px;
+      animation: focus-pulse 1.2s ease infinite;
+    }
+
+    @keyframes focus-pulse {
+      0%, 100% { outline-offset: 3px; }
+      50% { outline-offset: 5px; }
+    }
+
+    /* ======================================================== */
+    /* 16. PARALLAX DEPTH EFFECT ON SECTION HEADERS              */
+    /* Adds subtle scale+opacity animation when section enters   */
+    /* ======================================================== */
+    .section-header {
+      transition: opacity 0.4s ease;
+    }
+
+    /* ======================================================== */
+    /* 17. ENHANCED RESPONSIVE BREAKPOINTS                       */
+    /* Tablet (≤768px) and small mobile (≤480px) adjustments    */
+    /* ======================================================== */
+
+    /* --- Tablet: 769px – 900px is handled by existing block --- */
+
+    @media (max-width: 768px) {
+      /* Reduce section padding for tablet */
+      .section {
+        padding: 3.5rem 0;
+      }
+
+      .section-title {
+        font-size: clamp(0.85rem, 3vw, 1.15rem);
+      }
+
+      /* Video caption title scaling */
+      .video-caption-title {
+        font-size: 0.7rem;
+      }
+
+      /* Testimonials: single column on tablet */
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+        max-width: 520px;
+        margin: 0 auto;
+      }
+
+      /* Hero stats grid: 2 columns on tablet */
+      .hero-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      /* Contact placeholder padding */
+      .placeholder-box {
+        padding: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Mobile: tighten overall spacing */
+      .section {
+        padding: 2.5rem 0;
+      }
+
+      .container {
+        padding: 0 1rem;
+      }
+
+      /* Scale down pixel fonts for small screens */
+      .section-title {
+        font-size: clamp(0.75rem, 4vw, 0.95rem);
+        letter-spacing: 0.05rem;
+      }
+
+      .section-tag {
+        font-size: 0.55rem;
+      }
+
+      /* Video CRT frame: remove fancy shadow on tiny screens */
+      .video-crt-frame {
+        padding: 10px 10px 28px;
+        border-radius: 10px;
+        box-shadow: 4px 4px 0 var(--pixel-shadow);
+      }
+
+      /* Hero title scaling */
+      .hero-title {
+        font-size: clamp(0.75rem, 5vw, 1.1rem);
+      }
+
+      /* Footer social icons: wrap to 2 rows if needed */
+      .footer-social-row {
+        gap: 0.65rem;
+        flex-wrap: wrap;
+      }
+
+      /* Project cards: tighten padding */
+      .project-card {
+        padding: 1rem;
+      }
+
+      /* Timeline: hide secondary content */
+      .timeline-date {
+        font-size: 0.8rem;
+      }
+
+      /* Nav bar width on small mobile */
+      .vertical-navbar {
+        width: 260px !important;
+      }
+
+      /* Skills filter bar: smaller buttons */
+      .skill-filter-btn {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.7rem;
+      }
+
+      /* Chat window on mobile */
+      .chat-log {
+        min-height: 180px;
+        max-height: 260px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE TOP BAR (Only visible on screens <= 900px) -->
+  <header class="mobile-header" role="banner">
+    <a href="#hero" class="mobile-brand" aria-label="U Punya Portfolio Home">
+      <span class="mobile-brand-accent">&lt;PUNYA/&gt;</span>
+    </a>
+    <button 
+      id="mobile-menu-toggle" 
+      class="mobile-menu-btn" 
+      type="button" 
+      aria-label="Toggle vertical navigation menu" 
+      aria-expanded="false" 
+      aria-controls="vertical-nav"
+    >
+      [ ☰ MENU ]
+    </button>
+  </header>
+
+  <!-- Backdrop overlay for mobile drawer closing -->
+  <div id="sidebar-backdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+  <div class="site-layout">
+    
+    <!-- ====================================================== -->
+    <!-- VERTICAL NAVIGATION BAR (LEFT SIDE OF SCREEN)           -->
+    <!-- ====================================================== -->
+    <nav id="vertical-nav" class="vertical-navbar" aria-label="Main Navigation">
+      
+      <div class="navbar-content-top">
+        <!-- Sidebar Brand Card -->
+        <div class="nav-brand-box">
+          <a href="#hero" class="nav-brand-title" aria-label="Home">
+            <span class="brand-accent">&lt;PUNYA/&gt;</span>
+          </a>
+          <div class="nav-brand-subtitle">
+            <span class="online-indicator" aria-hidden="true"></span>
+            <span>DATA SCI &bull; DEV</span>
+          </div>
+        </div>
+
+        <!-- Vertical Menu Items -->
+        <ul class="nav-menu-list" role="list">
+          <li class="nav-menu-item">
+            <a href="#hero" class="nav-menu-link active" id="nav-link-hero" aria-current="page">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">⌂</span>
+                <span>Home</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#about" class="nav-menu-link" id="nav-link-about">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">✦</span>
+                <span>About Me</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#skills" class="nav-menu-link" id="nav-link-skills">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">⚡</span>
+                <span>Skills</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#timeline" class="nav-menu-link" id="nav-link-timeline">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">⏳</span>
+                <span>Timeline</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#projects" class="nav-menu-link" id="nav-link-projects">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">⬡</span>
+                <span>Projects</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#video-showcase" class="nav-menu-link" id="nav-link-video">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">▶</span>
+                <span>Showcase</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#testimonials" class="nav-menu-link" id="nav-link-testimonials">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">★</span>
+                <span>Reviews</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#chat" class="nav-menu-link" id="nav-link-chat">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">💬</span>
+                <span>Chat</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+          <li class="nav-menu-item">
+            <a href="#contact" class="nav-menu-link" id="nav-link-contact">
+              <span class="link-left">
+                <span class="nav-icon" aria-hidden="true">✉</span>
+                <span>Contact</span>
+              </span>
+              <span class="nav-arrow" aria-hidden="true">&gt;</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bottom Panel: Night Mode & System State -->
+      <div class="navbar-content-bottom">
+        <span class="nav-control-label">THEME CONTROL</span>
+        
+        <button 
+          id="theme-toggle" 
+          class="theme-toggle-btn" 
+          type="button" 
+          aria-label="Toggle Night and Day mode" 
+          aria-pressed="false"
+          title="Toggle Night / Day Theme"
+        >
+          <span class="theme-icon" id="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label" id="theme-label">Night: AUTO</span>
+          <span class="theme-mode-badge" id="theme-system-badge">[SYS]</span>
+        </button>
+
+        <div class="nav-system-status">
+          <span>HP: 100/100 &bull; MP: 99/99</span>
+        </div>
+      </div>
+
+    </nav>
+
+    <!-- ====================================================== -->
+    <!-- MAIN CONTENT AREA (OFFSET RIGHT FOR SIDEBAR)           -->
+    <!-- ====================================================== -->
+    <div class="main-wrapper">
+      <main id="main-content">
+
+        <!-- ==================================================== -->
+        <!-- 1. HERO SECTION                                      -->
+        <!-- ==================================================== -->
+        <section id="hero" class="hero-section" aria-labelledby="hero-title">
+          <div class="hero-overlay" aria-hidden="true"></div>
+          <div class="hero-scanlines" aria-hidden="true"></div>
+
+          <div class="container hero-container">
+            
+            <div class="pixel-window">
+              <div class="hud-header">
+                <span class="hud-status">
+                  <span class="blinking-dot"></span> SYSTEM ONLINE
+                </span>
+                <span class="hud-level">LVL. 01 GRADUATE</span>
+              </div>
+
+              <div class="hero-welcome-badge">✦ WELCOME VISITOR ✦</div>
+
+              <h1 id="hero-title" class="hero-title">
+                HELLO WORLD!
+                <span class="pixel-highlight-name">I'M U PUNYA</span>
+              </h1>
+
+              <div class="hero-tagline">
+                &gt; Aspiring Software Engineer & Data Scientist<span class="cursor-blink">_</span>
+              </div>
+
+              <p class="hero-pitch">
+                Passionate programmer building robust applications and data-driven solutions. 
+                Proficient in C, Java, and Python with academic training in Data Science from 
+                Adichunchanagiri Institute of Technology.
+              </p>
+
+              <div class="pixel-stats-grid">
+                <div class="stat-card">
+                  <span class="stat-label">CLASS</span>
+                  <span class="stat-val">DATA SCI</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-label">MAIN CORE</span>
+                  <span class="stat-val">JAVA / C</span>
+                </div>
+                <div class="stat-card">
+                  <span class="stat-label">SCRIPTING</span>
+                  <span class="stat-val">PYTHON</span>
+                </div>
+              </div>
+
+              <div class="hero-actions">
+                <a href="#projects" class="pixel-btn pixel-btn-primary">
+                  ▶ View Projects
+                </a>
+                <a href="#chat" class="pixel-btn pixel-btn-secondary">
+                  💬 Live Chat
+                </a>
+              </div>
+            </div>
+
+            <!-- Profile Frame -->
+            <aside class="pixel-profile-card" aria-label="Engineer Profile Overview">
+              <div class="avatar-frame">
+                <img 
+                  src="WhatsApp%20Image%202026-10-07%20at%209.51.14%20AM.jpeg" 
+                  alt="Portrait of U Punya" 
+                  width="220" 
+                  height="250"
+                />
+                <div class="avatar-level-badge">PLAYER 1: ACTIVE</div>
+              </div>
+
+              <div class="character-info">
+                <h3>U PUNYA</h3>
+                <p class="character-role">B.E. DATA SCIENCE</p>
+                <div class="pixel-chips">
+                  <span class="pixel-chip">C</span>
+                  <span class="pixel-chip">JAVA</span>
+                  <span class="pixel-chip">PYTHON</span>
+                  <span class="pixel-chip">SQL</span>
+                </div>
+              </div>
+            </aside>
+
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 2. ABOUT ME SECTION                                  -->
+        <!-- ==================================================== -->
+        <section id="about" class="section about-section" aria-labelledby="about-title">
+          <div class="container">
+            <header class="section-header">
+              <span class="section-tag">[01. PROFILE &amp; BIO]</span>
+              <h2 id="about-title" class="section-title">ABOUT ME</h2>
+              <p class="section-subtitle">Analytical problem-solver bridging software architecture and modern data science.</p>
+            </header>
+
+            <div class="about-grid">
+              
+              <aside class="about-profile-card" aria-label="Profile Card">
+                <div class="about-avatar-wrapper">
+                  <img 
+                    src="pixel-avatar.jpg" 
+                    alt="Pixel Art Avatar of U Punya" 
+                    class="about-avatar-img"
+                    width="220"
+                    height="220"
+                  />
+                  <div class="about-avatar-tag">AVATAR: U PUNYA</div>
+                </div>
+
+                <ul class="about-meta-list" role="list">
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">CLASS:</span>
+                    <span class="about-meta-val">SOFTWARE DEV</span>
+                  </li>
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">DEGREE:</span>
+                    <span class="about-meta-val">B.E. DATA SCI</span>
+                  </li>
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">INSTITUTE:</span>
+                    <span class="about-meta-val">AIT CHIKMAGALUR</span>
+                  </li>
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">LOCATION:</span>
+                    <span class="about-meta-val">KARNATAKA, IN</span>
+                  </li>
+                  <li class="about-meta-item">
+                    <span class="about-meta-key">STATUS:</span>
+                    <span class="about-meta-val" style="color: var(--status-green);">OPEN FOR HIRE</span>
+                  </li>
+                </ul>
+
+                <a href="#contact" class="pixel-btn pixel-btn-primary about-profile-btn">
+                  ✉ TRANSMIT INQUIRY
+                </a>
+              </aside>
+
+              <div class="about-content-deck">
+                
+                <article class="about-bio-box">
+                  <div class="about-bio-header">
+                    <h3 class="about-greeting-title">&gt; Hello World, I'm U Punya!</h3>
+                    <span class="about-status-pill">
+                      <span class="online-indicator" aria-hidden="true"></span> ACTIVE DEV
+                    </span>
+                  </div>
+
+                  <p class="about-bio-text">
+                    I am an aspiring <strong>Software Engineer</strong> with a Bachelor of Engineering in <strong>Data Science</strong> from <strong>Adichunchanagiri Institute of Technology</strong>. I am enthusiastic about designing robust algorithmic solutions, writing clean, maintainable code, and exploring how intelligent data pipelines transform everyday software.
+                  </p>
+
+                  <p class="about-bio-text">
+                    My core foundation is built upon <strong>C, Java, and Python</strong>. During my academic journey, I immersed myself in data structures, object-oriented software engineering principles, relational databases, and hands-on algorithm implementation. I approach software development with curiosity, discipline, and a strong focus on clean logic.
+                  </p>
+                </article>
+
+                <div class="about-highlights-deck">
+                  <h3 class="highlights-title">
+                    <span aria-hidden="true">✦</span> CAREER &amp; ACADEMIC HIGHLIGHTS
+                  </h3>
+
+                  <div class="highlights-grid">
+                    
+                    <div class="highlight-card">
+                      <div class="highlight-card-header">
+                        <span class="highlight-card-icon" aria-hidden="true">🎓</span>
+                        <h4 class="highlight-card-title">B.E. in Data Science</h4>
+                      </div>
+                      <p class="highlight-card-desc">
+                        Graduated with rigorous coursework in computing theory, statistics, data analytics, and database management systems.
+                      </p>
+                    </div>
+
+                    <div class="highlight-card">
+                      <div class="highlight-card-header">
+                        <span class="highlight-card-icon" aria-hidden="true">💻</span>
+                        <h4 class="highlight-card-title">Multi-Language Stack</h4>
+                      </div>
+                      <p class="highlight-card-desc">
+                        Hands-on mastery of <strong>C</strong> (low-level logic), <strong>Java</strong> (OOP & enterprise patterns), and <strong>Python</strong> (scripting & data processing).
+                      </p>
+                    </div>
+
+                    <div class="highlight-card">
+                      <div class="highlight-card-header">
+                        <span class="highlight-card-icon" aria-hidden="true">⚡</span>
+                        <h4 class="highlight-card-title">Academic Capstone Work</h4>
+                      </div>
+                      <p class="highlight-card-desc">
+                        Engineered comprehensive academic software projects applying algorithms, modular architecture, and structured problem-solving.
+                      </p>
+                    </div>
+
+                    <div class="highlight-card">
+                      <div class="highlight-card-header">
+                        <span class="highlight-card-icon" aria-hidden="true">🚀</span>
+                        <h4 class="highlight-card-title">Fresher Ready</h4>
+                      </div>
+                      <p class="highlight-card-desc">
+                        Adaptable quick learner prepared to contribute immediately to collaborative sprint teams, code reviews, and production systems.
+                      </p>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="interests-box">
+                  <h3 class="interests-title">&gt; PERSONAL INTERESTS &amp; PASSIONS</h3>
+                  <div class="interests-chips">
+                    <span class="interest-chip">🕹️ Retro &amp; 8-Bit Gaming</span>
+                    <span class="interest-chip">🧩 Algorithmic Puzzles</span>
+                    <span class="interest-chip">📊 Machine Learning &amp; AI</span>
+                    <span class="interest-chip">🌐 Open Source Software</span>
+                    <span class="interest-chip">📚 System Design Reading</span>
+                    <span class="interest-chip">💡 Tech Community Meetups</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 3. SKILLS SECTION (PIXEL ART GAUGES & COMPETENCIES)  -->
+        <!-- ==================================================== -->
+        <section id="skills" class="section skills-section" aria-labelledby="skills-title">
+          <div class="container">
+            <header class="section-header">
+              <span class="section-tag">[02. INVENTORY &amp; STATS]</span>
+              <h2 id="skills-title" class="section-title">TECHNICAL SKILLS</h2>
+              <p class="section-subtitle">Core programming competencies, algorithmic foundations, and development tooling.</p>
+            </header>
+
+            <div class="skills-filter-bar" role="toolbar" aria-label="Filter skills by category">
+              <button type="button" class="skill-filter-btn active" data-filter="all">
+                ✦ ALL INVENTORY
+              </button>
+              <button type="button" class="skill-filter-btn" data-filter="languages">
+                💻 LANGUAGES
+              </button>
+              <button type="button" class="skill-filter-btn" data-filter="data-science">
+                📊 DATA SCIENCE &amp; DB
+              </button>
+              <button type="button" class="skill-filter-btn" data-filter="tools">
+                🛠️ TOOLS &amp; ARCHITECTURE
+              </button>
+            </div>
+
+            <!-- Category 1: Languages -->
+            <div class="skills-category-group" data-category="languages">
+              <div class="skills-category-header">
+                <h3 class="skills-category-title">
+                  <span aria-hidden="true">&gt;</span> 01. PROGRAMMING LANGUAGES
+                </h3>
+                <span class="skills-category-badge">[CORE COMPONENT]</span>
+              </div>
+
+              <div class="skills-grid-layout">
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">☕</div>
+                      <div class="skill-name-group">
+                        <h4>Java</h4>
+                        <span class="skill-role-tag">OOP &amp; Core Systems</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 90</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">90%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-label="Java proficiency 90%">
+                      <div class="pixel-progress-fill" style="width: 90%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">OOP Design</span>
+                    <span class="sub-comp-tag">Collections API</span>
+                    <span class="sub-comp-tag">Exception Handling</span>
+                    <span class="sub-comp-tag">Multithreading</span>
+                  </div>
+                </article>
+
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">🐍</div>
+                      <div class="skill-name-group">
+                        <h4>Python</h4>
+                        <span class="skill-role-tag">Data Science &amp; Scripting</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 88</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">88%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Python proficiency 88%">
+                      <div class="pixel-progress-fill" style="width: 88%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Data Manipulation</span>
+                    <span class="sub-comp-tag">NumPy &amp; Pandas</span>
+                    <span class="sub-comp-tag">Automation</span>
+                    <span class="sub-comp-tag">Algorithm Scripts</span>
+                  </div>
+                </article>
+
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">&lt;C&gt;</div>
+                      <div class="skill-name-group">
+                        <h4>C Language</h4>
+                        <span class="skill-role-tag">Low-Level Memory &amp; Logic</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 85</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">85%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="C Language proficiency 85%">
+                      <div class="pixel-progress-fill" style="width: 85%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Pointer Arithmetic</span>
+                    <span class="sub-comp-tag">Dynamic Memory</span>
+                    <span class="sub-comp-tag">Data Structures</span>
+                    <span class="sub-comp-tag">System Fundamentals</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Category 2: Data Science -->
+            <div class="skills-category-group" data-category="data-science">
+              <div class="skills-category-header">
+                <h3 class="skills-category-title">
+                  <span aria-hidden="true">&gt;</span> 02. DATA SCIENCE &amp; DATABASES
+                </h3>
+                <span class="skills-category-badge">[ANALYTICS STACK]</span>
+              </div>
+
+              <div class="skills-grid-layout">
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">⚡</div>
+                      <div class="skill-name-group">
+                        <h4>Data Structures &amp; Algorithms</h4>
+                        <span class="skill-role-tag">Algorithm Complexity &amp; Trees</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 86</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">86%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="86" aria-valuemin="0" aria-valuemax="100" aria-label="DSA proficiency 86%">
+                      <div class="pixel-progress-fill" style="width: 86%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Arrays &amp; Linked Lists</span>
+                    <span class="sub-comp-tag">Trees &amp; Graphs</span>
+                    <span class="sub-comp-tag">Searching &amp; Sorting</span>
+                    <span class="sub-comp-tag">Big-O Optimization</span>
+                  </div>
+                </article>
+
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">🗄️</div>
+                      <div class="skill-name-group">
+                        <h4>SQL &amp; DBMS</h4>
+                        <span class="skill-role-tag">Relational Schemas &amp; Queries</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 84</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">84%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="84" aria-valuemin="0" aria-valuemax="100" aria-label="SQL and DBMS proficiency 84%">
+                      <div class="pixel-progress-fill" style="width: 84%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Complex SQL Joins</span>
+                    <span class="sub-comp-tag">Schema Normalization</span>
+                    <span class="sub-comp-tag">Indexing Basics</span>
+                    <span class="sub-comp-tag">Data Integrity</span>
+                  </div>
+                </article>
+
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">📈</div>
+                      <div class="skill-name-group">
+                        <h4>Data Science &amp; ML</h4>
+                        <span class="skill-role-tag">Statistical Models &amp; EDA</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 80</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">80%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" aria-label="Data Science and ML proficiency 80%">
+                      <div class="pixel-progress-fill" style="width: 80%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Exploratory Analysis</span>
+                    <span class="sub-comp-tag">Data Preprocessing</span>
+                    <span class="sub-comp-tag">Classification Models</span>
+                    <span class="sub-comp-tag">Evaluation Metrics</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Category 3: Tools -->
+            <div class="skills-category-group" data-category="tools">
+              <div class="skills-category-header">
+                <h3 class="skills-category-title">
+                  <span aria-hidden="true">&gt;</span> 03. TOOLS, ENVIRONMENTS &amp; PRACTICES
+                </h3>
+                <span class="skills-category-badge">[DEVELOPER GEAR]</span>
+              </div>
+
+              <div class="skills-grid-layout">
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">🐙</div>
+                      <div class="skill-name-group">
+                        <h4>Git &amp; GitHub</h4>
+                        <span class="skill-role-tag">Version Control &amp; Team Workflow</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 88</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">88%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" aria-label="Git and GitHub proficiency 88%">
+                      <div class="pixel-progress-fill" style="width: 88%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Branching Strategies</span>
+                    <span class="sub-comp-tag">Pull Requests</span>
+                    <span class="sub-comp-tag">Merge Conflict Resolution</span>
+                    <span class="sub-comp-tag">Remote Tracking</span>
+                  </div>
+                </article>
+
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">🐧</div>
+                      <div class="skill-name-group">
+                        <h4>Linux &amp; CLI</h4>
+                        <span class="skill-role-tag">Bash &amp; System Navigation</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 82</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">82%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="82" aria-valuemin="0" aria-valuemax="100" aria-label="Linux and CLI proficiency 82%">
+                      <div class="pixel-progress-fill" style="width: 82%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Shell Scripting</span>
+                    <span class="sub-comp-tag">File System Ops</span>
+                    <span class="sub-comp-tag">Process Management</span>
+                    <span class="sub-comp-tag">Package Managers</span>
+                  </div>
+                </article>
+
+                <article class="skill-card">
+                  <div class="skill-card-top">
+                    <div class="skill-identity">
+                      <div class="skill-icon-box" aria-hidden="true">⚙️</div>
+                      <div class="skill-name-group">
+                        <h4>Software Architecture</h4>
+                        <span class="skill-role-tag">Clean Code &amp; Debugging</span>
+                      </div>
+                    </div>
+                    <span class="skill-level-pill">LVL. 85</span>
+                  </div>
+
+                  <div class="skill-progress-container">
+                    <div class="skill-progress-labels">
+                      <span>Proficiency</span>
+                      <span class="skill-pct-val">85%</span>
+                    </div>
+                    <div class="pixel-progress-track" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" aria-label="Software Architecture proficiency 85%">
+                      <div class="pixel-progress-fill" style="width: 85%;"></div>
+                    </div>
+                  </div>
+
+                  <div class="skill-subcompetencies">
+                    <span class="sub-comp-tag">Modular Design</span>
+                    <span class="sub-comp-tag">Code Refactoring</span>
+                    <span class="sub-comp-tag">Structured Debugging</span>
+                    <span class="sub-comp-tag">Unit Testing Basics</span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 4. TIMELINE COMPONENT (EDUCATION & MAJOR PROJECTS)   -->
+        <!-- ==================================================== -->
+        <section id="timeline" class="section timeline-section" aria-labelledby="timeline-title">
+          <div class="container">
+            <header class="section-header">
+              <span class="section-tag">[03. QUEST &amp; EXP LOG]</span>
+              <h2 id="timeline-title" class="section-title">CAREER &amp; EDUCATION TIMELINE</h2>
+              <p class="section-subtitle">Chronological progression of academic milestones and major software engineering projects.</p>
+            </header>
+
+            <div class="timeline-filter-bar" role="toolbar" aria-label="Filter timeline events">
+              <button type="button" class="timeline-filter-btn active" data-timeline-filter="all">
+                ✦ ALL MILESTONES
+              </button>
+              <button type="button" class="timeline-filter-btn" data-timeline-filter="education">
+                🎓 EDUCATION
+              </button>
+              <button type="button" class="timeline-filter-btn" data-timeline-filter="project">
+                🚀 MAJOR PROJECTS
+              </button>
+            </div>
+
+            <div class="timeline-wrapper">
+              <div class="timeline-spine" aria-hidden="true"></div>
+
+              <ul class="timeline-items-list" role="list">
+                <li class="timeline-item" data-timeline-type="education">
+                  <div class="timeline-marker" aria-hidden="true">🎓</div>
+                  <article class="timeline-card">
+                    <div class="timeline-card-header">
+                      <span class="timeline-type-badge badge-education">
+                        <span>🎓</span> EDUCATION
+                      </span>
+                      <time class="timeline-date-pill">2022 &ndash; 2026</time>
+                    </div>
+                    <h3 class="timeline-event-title">Bachelor of Engineering in Data Science</h3>
+                    <div class="timeline-event-institution">
+                      <span>🏛️ Adichunchanagiri Institute of Technology (AIT)</span>
+                    </div>
+                    <p class="timeline-event-desc">
+                      Specialized in Data Science and computational software engineering. Gained thorough foundations in object-oriented programming with Java, low-level system design with C, and data analytics scripting in Python.
+                    </p>
+                    <div class="timeline-tag-list">
+                      <span class="timeline-pill">Data Structures</span>
+                      <span class="timeline-pill">Java OOP</span>
+                      <span class="timeline-pill">Python Data Science</span>
+                      <span class="timeline-pill">DBMS &amp; SQL</span>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="timeline-item" data-timeline-type="project">
+                  <div class="timeline-marker" aria-hidden="true">🚀</div>
+                  <article class="timeline-card">
+                    <div class="timeline-card-header">
+                      <span class="timeline-type-badge badge-project">
+                        <span>🚀</span> MAJOR PROJECT
+                      </span>
+                      <time class="timeline-date-pill">2025 &ndash; 2026</time>
+                    </div>
+                    <h3 class="timeline-event-title">Academic Software Engineering Capstone</h3>
+                    <div class="timeline-event-institution">
+                      <span>⚙️ Multi-Paradigm Software Implementation</span>
+                    </div>
+                    <p class="timeline-event-desc">
+                      Architected and engineered a comprehensive academic project implementing multi-paradigm programming techniques across C, Java, and Python. Applied modular class decomposition and custom algorithm pipelines.
+                    </p>
+                    <div class="timeline-tag-list">
+                      <span class="timeline-pill">C</span>
+                      <span class="timeline-pill">Java</span>
+                      <span class="timeline-pill">Python</span>
+                      <span class="timeline-pill">Clean Code</span>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="timeline-item" data-timeline-type="project">
+                  <div class="timeline-marker" aria-hidden="true">📊</div>
+                  <article class="timeline-card">
+                    <div class="timeline-card-header">
+                      <span class="timeline-type-badge badge-project">
+                        <span>📊</span> MAJOR PROJECT
+                      </span>
+                      <time class="timeline-date-pill">2024 &ndash; 2025</time>
+                    </div>
+                    <h3 class="timeline-event-title">Exploratory Data Analytics &amp; ML Modeling</h3>
+                    <div class="timeline-event-institution">
+                      <span>📈 Applied Data Analytics Pipeline</span>
+                    </div>
+                    <p class="timeline-event-desc">
+                      Built end-to-end data processing pipelines using Python, NumPy, and Pandas. Executed exploratory data analysis (EDA), dataset cleansing, and predictive classification models.
+                    </p>
+                    <div class="timeline-tag-list">
+                      <span class="timeline-pill">Python</span>
+                      <span class="timeline-pill">Pandas</span>
+                      <span class="timeline-pill">NumPy</span>
+                      <span class="timeline-pill">EDA</span>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="timeline-item" data-timeline-type="education">
+                  <div class="timeline-marker" aria-hidden="true">📚</div>
+                  <article class="timeline-card">
+                    <div class="timeline-card-header">
+                      <span class="timeline-type-badge badge-education">
+                        <span>📚</span> PRE-UNIVERSITY
+                      </span>
+                      <time class="timeline-date-pill">2020 &ndash; 2022</time>
+                    </div>
+                    <h3 class="timeline-event-title">Pre-University Course (PUC) &ndash; Science</h3>
+                    <div class="timeline-event-institution">
+                      <span>🏫 BGS Pre-University College</span>
+                    </div>
+                    <p class="timeline-event-desc">
+                      Completed pre-university education in the Science stream with intensive coursework in Mathematics, Computer Science, Physics, and Chemistry.
+                    </p>
+                    <div class="timeline-tag-list">
+                      <span class="timeline-pill">Mathematics</span>
+                      <span class="timeline-pill">Computer Science</span>
+                      <span class="timeline-pill">Physics &amp; Chemistry</span>
+                    </div>
+                  </article>
+                </li>
+
+                <li class="timeline-item" data-timeline-type="education">
+                  <div class="timeline-marker" aria-hidden="true">🎒</div>
+                  <article class="timeline-card">
+                    <div class="timeline-card-header">
+                      <span class="timeline-type-badge badge-education">
+                        <span>🎒</span> SECONDARY SCHOOL
+                      </span>
+                      <time class="timeline-date-pill">2020</time>
+                    </div>
+                    <h3 class="timeline-event-title">Secondary School Leaving Certificate (SSLC)</h3>
+                    <div class="timeline-event-institution">
+                      <span>🏫 Government Girls Junior College</span>
+                    </div>
+                    <p class="timeline-event-desc">
+                      Achieved secondary school credentials with honors and distinction in Science and Mathematics.
+                    </p>
+                    <div class="timeline-tag-list">
+                      <span class="timeline-pill">Academic Distinction</span>
+                      <span class="timeline-pill">Mathematics &amp; Science</span>
+                    </div>
+                  </article>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 5. PROJECTS SECTION WITH CLICKABLE THUMBNAILS        -->
+        <!-- Displays project thumbnails with uniform padding,    -->
+        <!-- hover effects, and interactive modal detail views.   -->
+        <!-- ==================================================== -->
+        <section id="projects" class="section projects-section" aria-labelledby="projects-title">
+          <div class="container">
+            <header class="section-header">
+              <span class="section-tag">[04. MISSION LOG &amp; BUILDS]</span>
+              <h2 id="projects-title" class="section-title">FEATURED PROJECTS</h2>
+              <p class="section-subtitle">Select software applications, algorithmic tools, and data science implementations. Click any thumbnail to inspect technical architecture.</p>
+            </header>
+
+            <div class="projects-grid">
+              
+              <!-- ========================================================================= -->
+              <!-- PROJECT 1: MULTI-PARADIGM SOFTWARE ENGINE                                 -->
+              <!-- THUMBNAIL-TO-DETAIL CONNECTION ARCHITECTURE:                              -->
+              <!-- 1. The interactive thumbnail container below (.project-thumb-box) is      -->
+              <!--    assigned the attribute: data-project-target="project-1".              -->
+              <!-- 2. When a visitor clicks this thumbnail (or focuses and hits Enter/Space),-->
+              <!--    a delegated event listener reads data-project-target ("project-1").    -->
+              <!-- 3. The openProjectModal('project-1') routine retrieves matching metadata  -->
+              <!--    from the central `projectDatabase['project-1']` data store.            -->
+              <!-- 4. The banner (project-code.jpg), title, features, tags, and repo link    -->
+              <!--    are rendered into the modal dialog (#project-modal) and displayed.     -->
+              <!-- ========================================================================= -->
+              <article class="project-card" data-project-id="project-1">
+                <!-- Thumbnail Box: Clickable trigger with hover zoom and badge -->
+                <div 
+                    class="project-thumb-box" 
+                    role="button" 
+                    tabindex="0" 
+                    aria-haspopup="dialog" 
+                    aria-label="Inspect details for Multi-Paradigm Software Engine"
+                    data-project-target="project-1"
+                >
+                  <img 
+                    src="project-code.jpg" 
+                    alt="Pixel art thumbnail showing syntax-highlighted code workstations" 
+                    class="project-thumb-img" 
+                    loading="lazy" 
+                  />
+                  <div class="project-thumb-overlay" aria-hidden="true">
+                    <span class="project-thumb-prompt">🔍 VIEW DETAILS</span>
+                  </div>
+                </div>
+
+                <div class="project-meta-bar">
+                  <span class="project-category-badge">CORE SOFTWARE</span>
+                  <span class="project-status-dot">
+                    <span class="blinking-dot" aria-hidden="true"></span> COMPLETED
+                  </span>
+                </div>
+
+                <h3 class="project-title">Multi-Paradigm Software Engine</h3>
+                <p class="project-summary">
+                  A high-throughput software architecture integrating procedural memory routines in C, a clean Object-Oriented engine in Java, and Python automation scripts for data validation.
+                </p>
+
+                <div class="project-tech-tags">
+                  <span class="project-tech-tag">Java</span>
+                  <span class="project-tech-tag">C</span>
+                  <span class="project-tech-tag">Python</span>
+                  <span class="project-tech-tag">OOP Architecture</span>
+                  <span class="project-tech-tag">Algorithms</span>
+                </div>
+
+                <div class="project-action-row">
+                  <button 
+                    type="button" 
+                    class="project-btn-details" 
+                    data-project-target="project-1"
+                    aria-haspopup="dialog"
+                  >
+                    🔍 VIEW DETAILS
+                  </button>
+                  <a 
+                    href="https://github.com/punyau27" 
+                    target="_blank" 
+                    rel="noopener" 
+                    class="project-link-icon" 
+                    title="View Source on GitHub"
+                  >
+                    <span>🐙</span> CODE
+                  </a>
+                </div>
+              </article>
+
+              <!-- ========================================================================= -->
+              <!-- PROJECT 2: DATASENSE PREDICTIVE ML PIPELINE                               -->
+              <!-- THUMBNAIL-TO-DETAIL CONNECTION ARCHITECTURE:                              -->
+              <!-- 1. The interactive thumbnail container below (.project-thumb-box) is      -->
+              <!--    assigned the attribute: data-project-target="project-2".              -->
+              <!-- 2. When a visitor clicks this thumbnail (or focuses and hits Enter/Space),-->
+              <!--    the event listener queries the 'project-2' data object in the script.  -->
+              <!-- 3. The openProjectModal('project-2') routine pulls the ML pipeline banner -->
+              <!--    (project-analytics.jpg), classification metrics, and EDA specs.        -->
+              <!-- 4. The modal dialog (#project-modal) dynamically updates and displays it. -->
+              <!-- ========================================================================= -->
+              <article class="project-card" data-project-id="project-2">
+                <!-- Thumbnail Box: Clickable trigger with hover zoom and badge -->
+                <div 
+                    class="project-thumb-box" 
+                    role="button" 
+                    tabindex="0" 
+                    aria-haspopup="dialog" 
+                    aria-label="Inspect details for DataSense ML Analytics Pipeline"
+                    data-project-target="project-2"
+                >
+                  <img 
+                    src="project-analytics.jpg" 
+                    alt="Pixel art thumbnail showing data operations terminal with charts" 
+                    class="project-thumb-img" 
+                    loading="lazy" 
+                  />
+                  <div class="project-thumb-overlay" aria-hidden="true">
+                    <span class="project-thumb-prompt">🔍 VIEW DETAILS</span>
+                  </div>
+                </div>
+
+                <div class="project-meta-bar">
+                  <span class="project-category-badge">DATA SCIENCE &amp; ML</span>
+                  <span class="project-status-dot">
+                    <span class="blinking-dot" aria-hidden="true"></span> COMPLETED
+                  </span>
+                </div>
+
+                <h3 class="project-title">DataSense &ndash; Predictive Analytics</h3>
+                <p class="project-summary">
+                  End-to-end data processing framework executing automated dataset cleansing, exploratory data analysis, and predictive classification models to uncover statistical correlations.
+                </p>
+
+                <div class="project-tech-tags">
+                  <span class="project-tech-tag">Python</span>
+                  <span class="project-tech-tag">Pandas</span>
+                  <span class="project-tech-tag">NumPy</span>
+                  <span class="project-tech-tag">Scikit-Learn</span>
+                  <span class="project-tech-tag">Data Visuals</span>
+                </div>
+
+                <div class="project-action-row">
+                  <button 
+                    type="button" 
+                    class="project-btn-details" 
+                    data-project-target="project-2"
+                    aria-haspopup="dialog"
+                  >
+                    🔍 VIEW DETAILS
+                  </button>
+                  <a 
+                    href="https://github.com/punyau27" 
+                    target="_blank" 
+                    rel="noopener" 
+                    class="project-link-icon" 
+                    title="View Source on GitHub"
+                  >
+                    <span>🐙</span> CODE
+                  </a>
+                </div>
+              </article>
+
+              <!-- ========================================================================= -->
+              <!-- PROJECT 3: ALGOFORGE ALGORITHM VISUALIZER                                 -->
+              <!-- THUMBNAIL-TO-DETAIL CONNECTION ARCHITECTURE:                              -->
+              <!-- 1. The interactive thumbnail container below (.project-thumb-box) is      -->
+              <!--    assigned the attribute: data-project-target="project-3".              -->
+              <!-- 2. Clicking or pressing Enter on this thumbnail triggers the listener     -->
+              <!--    with target identifier 'project-3'.                                    -->
+              <!-- 3. openProjectModal('project-3') retrieves data structure simulations,    -->
+              <!--    asymptotic Big-O metrics, and the graph preview (project-algo.jpg).    -->
+              <!-- 4. The modal dialog displays the full technical achievements and source.  -->
+              <!-- ========================================================================= -->
+              <article class="project-card" data-project-id="project-3">
+                <!-- Thumbnail Box: Clickable trigger with hover zoom and badge -->
+                <div 
+                    class="project-thumb-box" 
+                    role="button" 
+                    tabindex="0" 
+                    aria-haspopup="dialog" 
+                    aria-label="Inspect details for AlgoForge Algorithm Visualizer"
+                    data-project-target="project-3"
+                >
+                  <img 
+                    src="project-algo.jpg" 
+                    alt="Pixel art thumbnail showing an arcade screen pathfinding graph network" 
+                    class="project-thumb-img" 
+                    loading="lazy" 
+                  />
+                  <div class="project-thumb-overlay" aria-hidden="true">
+                    <span class="project-thumb-prompt">🔍 VIEW DETAILS</span>
+                  </div>
+                </div>
+
+                <div class="project-meta-bar">
+                  <span class="project-category-badge">ALGORITHMS &amp; GUI</span>
+                  <span class="project-status-dot">
+                    <span class="blinking-dot" aria-hidden="true"></span> ACTIVE
+                  </span>
+                </div>
+
+                <h3 class="project-title">AlgoForge &ndash; DSA Visualizer</h3>
+                <p class="project-summary">
+                  Interactive visualization playground for classical data structures and pathfinding mechanics, demonstrating step-by-step traversal, Big-O metrics, and call-stack progression.
+                </p>
+
+                <div class="project-tech-tags">
+                  <span class="project-tech-tag">Java</span>
+                  <span class="project-tech-tag">Data Structures</span>
+                  <span class="project-tech-tag">Graph Theory</span>
+                  <span class="project-tech-tag">A* / Dijkstra</span>
+                  <span class="project-tech-tag">Asymptotic O(n)</span>
+                </div>
+
+                <div class="project-action-row">
+                  <button 
+                    type="button" 
+                    class="project-btn-details" 
+                    data-project-target="project-3"
+                    aria-haspopup="dialog"
+                  >
+                    🔍 VIEW DETAILS
+                  </button>
+                  <a 
+                    href="https://github.com/punyau27" 
+                    target="_blank" 
+                    rel="noopener" 
+                    class="project-link-icon" 
+                    title="View Source on GitHub"
+                  >
+                    <span>🐙</span> CODE
+                  </a>
+                </div>
+              </article>
+
+              <!-- ========================================================================= -->
+              <!-- PROJECT 4: RELATIONAL INVENTORY & SQL MANAGER                             -->
+              <!-- THUMBNAIL-TO-DETAIL CONNECTION ARCHITECTURE:                              -->
+              <!-- 1. The interactive thumbnail container below (.project-thumb-box) is      -->
+              <!--    assigned the attribute: data-project-target="project-4".              -->
+              <!-- 2. Clicking or pressing Enter on this thumbnail dispatches 'project-4'    -->
+              <!--    to the modal controller function.                                      -->
+              <!-- 3. openProjectModal('project-4') populates database schema info, 3NF      -->
+              <!--    normalization specs, and server tube artwork (project-db.jpg).         -->
+              <!-- 4. The modal dialog presents the complete relational backend overview.  -->
+              <!-- ========================================================================= -->
+              <article class="project-card" data-project-id="project-4">
+                <!-- Thumbnail Box: Clickable trigger with hover zoom and badge -->
+                <div 
+                    class="project-thumb-box" 
+                    role="button" 
+                    tabindex="0" 
+                    aria-haspopup="dialog" 
+                    aria-label="Inspect details for Relational Database & Inventory Engine"
+                    data-project-target="project-4"
+                >
+                  <img 
+                    src="project-db.jpg" 
+                    alt="Pixel art thumbnail showing glowing database server tubes" 
+                    class="project-thumb-img" 
+                    loading="lazy" 
+                  />
+                  <div class="project-thumb-overlay" aria-hidden="true">
+                    <span class="project-thumb-prompt">🔍 VIEW DETAILS</span>
+                  </div>
+                </div>
+
+                <div class="project-meta-bar">
+                  <span class="project-category-badge">DATABASE &amp; BACKEND</span>
+                  <span class="project-status-dot">
+                    <span class="blinking-dot" aria-hidden="true"></span> COMPLETED
+                  </span>
+                </div>
+
+                <h3 class="project-title">Relational Inventory &amp; DBMS Engine</h3>
+                <p class="project-summary">
+                  A normalized 3NF relational database management system with ACID-compliant transactions, multi-table joins, indexing optimizations, and secure data integrity constraints.
+                </p>
+
+                <div class="project-tech-tags">
+                  <span class="project-tech-tag">SQL</span>
+                  <span class="project-tech-tag">Java JDBC</span>
+                  <span class="project-tech-tag">Relational Design</span>
+                  <span class="project-tech-tag">Schema 3NF</span>
+                  <span class="project-tech-tag">ACID Logic</span>
+                </div>
+
+                <div class="project-action-row">
+                  <button 
+                    type="button" 
+                    class="project-btn-details" 
+                    data-project-target="project-4"
+                    aria-haspopup="dialog"
+                  >
+                    🔍 VIEW DETAILS
+                  </button>
+                  <a 
+                    href="https://github.com/punyau27" 
+                    target="_blank" 
+                    rel="noopener" 
+                    class="project-link-icon" 
+                    title="View Source on GitHub"
+                  >
+                    <span>🐙</span> CODE
+                  </a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- PROJECT DETAIL MODAL DIALOG (ACCESSIBLE POPUP VIEW)  -->
+        <!-- Triggered by clicking any project thumbnail or button-->
+        <!-- ==================================================== -->
+        <div 
+          id="project-modal" 
+          class="project-modal-backdrop" 
+          role="dialog" 
+          aria-modal="true" 
+          aria-labelledby="modal-title"
+        >
+          <div class="project-modal-card" id="project-modal-card">
+            <button 
+              type="button" 
+              class="modal-close-btn" 
+              id="modal-close-btn" 
+              aria-label="Close project details"
+            >
+              [ ✖ CLOSE ]
+            </button>
+
+            <!-- Dynamic Modal Content populated via JavaScript -->
+            <div class="modal-header-banner">
+              <img id="modal-banner-img" src="project-code.jpg" alt="Project Banner" />
+            </div>
+
+            <div class="modal-meta-row">
+              <span class="project-category-badge" id="modal-category">CATEGORY</span>
+              <span class="project-status-dot" id="modal-status">
+                <span class="blinking-dot" aria-hidden="true"></span> STATUS
+              </span>
+            </div>
+
+            <h3 class="modal-project-title" id="modal-title">Project Title</h3>
+            <p class="modal-desc-text" id="modal-summary">Detailed overview of the project architecture and goals.</p>
+
+            <h4 class="modal-section-heading">&gt; KEY ENGINEERING ACHIEVEMENTS</h4>
+            <ul class="modal-features-list" id="modal-features">
+              <!-- Dynamically populated bullet items -->
+            </ul>
+
+            <h4 class="modal-section-heading">&gt; TECH STACK &amp; SPECIFICATIONS</h4>
+            <div class="project-tech-tags" id="modal-tech-tags">
+              <!-- Dynamically populated tags -->
+            </div>
+
+            <div class="modal-action-bar">
+              <a 
+                id="modal-repo-link" 
+                href="https://github.com/punyau27" 
+                target="_blank" 
+                rel="noopener" 
+                class="pixel-btn pixel-btn-primary"
+              >
+                🐙 View Repository
+              </a>
+              <a 
+                href="#contact" 
+                class="pixel-btn pixel-btn-secondary" 
+                id="modal-contact-link"
+              >
+                ✉ Inquire About Project
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- ==================================================== -->
+        <!-- 5b. VIDEO SHOWCASE SECTION                           -->
+        <!-- Responsive 16:9 embed with pixel-art CRT bezel frame -->
+        <!-- Caption explains the video's content & context       -->
+        <!-- ==================================================== -->
+        <section id="video-showcase" class="section video-section" aria-labelledby="video-title">
+          <div class="container">
+            <header class="section-header reveal">
+              <span class="section-tag">[04b. PORTFOLIO HIGHLIGHT]</span>
+              <h2 id="video-title" class="section-title">DEMO REEL</h2>
+              <p class="section-subtitle">A recorded walkthrough showcasing key projects, coding workflow, and technical demonstrations from my engineering journey.</p>
+            </header>
+
+            <!-- CRT Monitor Frame: pixel art aesthetic bezel wrapping the video -->
+            <div class="video-crt-frame reveal reveal-delay-2">
+              <!--
+                RESPONSIVE VIDEO CONTAINER:
+                Uses `aspect-ratio: 16 / 9` CSS property so the video always
+                maintains widescreen proportions regardless of viewport width.
+                The video element fills the container using position:absolute + inset:0.
+              -->
+              <div class="video-responsive-container">
+                <!-- Portfolio introduction/demo video provided by U Punya -->
+                <video
+                  id="portfolio-demo-video"
+                  class="portfolio-video"
+                  controls
+                  preload="metadata"
+                  aria-label="Portfolio introduction and project demo video by U Punya"
+                >
+                  <source src="WhatsApp Video 2026-10-07 at 10.02.43 AM.mp4" type="video/mp4" />
+                  <!-- Fallback text if browser doesn't support HTML5 video -->
+                  <p>Your browser does not support HTML5 video. <a href="WhatsApp Video 2026-10-07 at 10.02.43 AM.mp4">Download the video</a>.</p>
+                </video>
+              </div>
+            </div>
+
+            <!-- Video Caption: explains what the viewer will see -->
+            <div class="video-caption-box reveal reveal-delay-3">
+              <span class="video-caption-tag">[ ▶ PORTFOLIO DEMO REEL ]</span>
+              <h3 class="video-caption-title">Engineering Journey — Live Walkthrough</h3>
+              <p class="video-caption-desc">
+                This demo reel covers key milestones in my engineering journey — from OOP architecture in Java and memory-level C programming to Python-powered data pipelines and SQL database design. A first-person look at the code, the process, and the passion behind the portfolio.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 5c. TESTIMONIALS SECTION                             -->
+        <!-- Feedback from peers, collaborators, and faculty.     -->
+        <!-- Each quote is in a card with drop-shadow, rounded    -->
+        <!-- corners, star rating, and hover lift animation.      -->
+        <!-- ==================================================== -->
+        <section id="testimonials" class="section testimonials-section" aria-labelledby="testimonials-title">
+          <div class="container">
+            <header class="section-header reveal">
+              <span class="section-tag">[04c. PEER REVIEWS & FEEDBACK]</span>
+              <h2 id="testimonials-title" class="section-title">TESTIMONIALS</h2>
+              <p class="section-subtitle">Words from classmates, mentors, and collaborators who've worked alongside or observed my engineering approach.</p>
+            </header>
+
+            <div class="testimonials-grid">
+
+              <!-- TESTIMONIAL 1: Faculty/Mentor -->
+              <!-- Card uses border-radius:16px + multi-layer drop-shadow for premium depth -->
+              <article class="testimonial-card reveal reveal-delay-1" aria-label="Testimonial from Dr. Vijay R.">
+                <!-- 5-star rating –– rendered as emoji stars for pixel-art feel -->
+                <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                </div>
+
+                <!-- The quote itself: readable body copy in VT323 for pixel aesthetic -->
+                <blockquote class="testimonial-quote">
+                  "Punya consistently demonstrates a rare blend of analytical thinking and hands-on implementation skill. In Data Structures and Algorithms coursework, he not only mastered the theory but went beyond — building his own visualizer tool that became a reference for other students."
+                </blockquote>
+
+                <hr class="testimonial-divider" aria-hidden="true" />
+
+                <!-- Author info row: pixel-art avatar initial + name + role -->
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">VR</div>
+                  <div>
+                    <div class="testimonial-name">Dr. Vijay R.</div>
+                    <div class="testimonial-role">Professor — Algorithms & OS, AIT</div>
+                    <span class="testimonial-relation-tag">Faculty Mentor</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- TESTIMONIAL 2: Peer/Classmate -->
+              <article class="testimonial-card reveal reveal-delay-2" aria-label="Testimonial from Roshini K.">
+                <div class="testimonial-stars" aria-label="5 out of 5 stars">
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                </div>
+
+                <blockquote class="testimonial-quote">
+                  "Working with Punya on our semester group project was exceptional. He single-handedly architected the backend database layer — designing normalized tables, writing optimized joins, and debugging JDBC connections we all struggled with. His patience in explaining complex concepts to the team made him the anchor of every project."
+                </blockquote>
+
+                <hr class="testimonial-divider" aria-hidden="true" />
+
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">RK</div>
+                  <div>
+                    <div class="testimonial-name">Roshini K.</div>
+                    <div class="testimonial-role">B.E. Data Science, AIT — Batch 2024</div>
+                    <span class="testimonial-relation-tag">Classmate & Collaborator</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- TESTIMONIAL 3: Lab Partner -->
+              <article class="testimonial-card reveal reveal-delay-3" aria-label="Testimonial from Aditya M.">
+                <div class="testimonial-stars" aria-label="4 out of 5 stars">
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star" aria-hidden="true">★</span>
+                  <span class="star-empty" aria-hidden="true">★</span>
+                </div>
+
+                <blockquote class="testimonial-quote">
+                  "Punya has a strong instinct for debugging — something that's genuinely rare. During our Machine Learning lab sessions, when the rest of us were stuck on data preprocessing, he had already traced the issue to a null imputation problem and offered a clean Pandas fix. Impressive attention to detail."
+                </blockquote>
+
+                <hr class="testimonial-divider" aria-hidden="true" />
+
+                <div class="testimonial-author">
+                  <div class="testimonial-avatar" aria-hidden="true">AM</div>
+                  <div>
+                    <div class="testimonial-name">Aditya M.</div>
+                    <div class="testimonial-role">ML Lab Partner — AIT</div>
+                    <span class="testimonial-relation-tag">Lab Partner</span>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 6. CHAT SECTION (TERMINAL DIALOGUE)                  -->
+        <!-- ==================================================== -->
+        <section id="chat" class="section chat-section" aria-labelledby="chat-title">
+          <div class="container">
+            <header class="section-header">
+              <span class="section-tag">[05. COMMS CHANNEL]</span>
+              <h2 id="chat-title" class="section-title">PIXEL CHAT TERMINAL</h2>
+              <p class="section-subtitle">Interact with Punya's virtual 8-bit bot or transmit an instant message.</p>
+            </header>
+
+            <div class="chat-terminal-container">
+              <div class="chat-terminal-header">
+                <div class="terminal-dots">
+                  <span class="terminal-dot dot-red"></span>
+                  <span class="terminal-dot dot-yellow"></span>
+                  <span class="terminal-dot dot-green"></span>
+                </div>
+                <span>TERMINAL_V1.0 // PUNYA_BOT</span>
+                <span>STATUS: READY</span>
+              </div>
+
+              <div class="chat-log" id="chat-log">
+                <div class="chat-msg chat-msg-bot">
+                  <span class="chat-msg-author">[SYSTEM_MSG]</span>
+                  Terminal online. Connected to U Punya's workstation.
+                </div>
+                <div class="chat-msg chat-msg-bot">
+                  <span class="chat-msg-author">[PUNYA_BOT]</span>
+                  Hello there! Ask me about my tech stack, education, or how we can collaborate.
+                </div>
+              </div>
+
+              <div class="chat-prompts-bar">
+                <button type="button" class="prompt-chip" data-question="What are your core programming languages?">
+                  💻 Core Languages?
+                </button>
+                <button type="button" class="prompt-chip" data-question="What is your educational background?">
+                  🎓 Education?
+                </button>
+                <button type="button" class="prompt-chip" data-question="Are you available for engineering roles?">
+                  💼 Open for Hire?
+                </button>
+              </div>
+
+              <form class="chat-input-bar" id="chat-form">
+                <input 
+                  type="text" 
+                  id="chat-user-input" 
+                  class="chat-input" 
+                  placeholder="Type a message or command..." 
+                  autocomplete="off" 
+                  aria-label="Type message in chat terminal"
+                />
+                <button type="submit" class="chat-send-btn">
+                  ▶ SEND
+                </button>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================================================== -->
+        <!-- 7. CONTACT SECTION                                   -->
+        <!-- ==================================================== -->
+        <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+          <div class="container">
+            <header class="section-header">
+              <span class="section-tag">[06. TRANSMISSION]</span>
+              <h2 id="contact-title" class="section-title">GET IN TOUCH</h2>
+              <p class="section-subtitle">Looking for an enthusiastic software engineer? Send a transmission.</p>
+            </header>
+
+            <div class="placeholder-box" id="contact-placeholder">
+              <h3>[Direct Channels]</h3>
+              <p>
+                <strong>Email:</strong> <a href="mailto:punyau23@gmail.com">punyau23@gmail.com</a> | 
+                <strong>Phone:</strong> +91 8431772268<br />
+                <strong>GitHub:</strong> <a href="https://github.com/punyau27" target="_blank" rel="noopener">punyau27</a> | 
+                <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/punya-u-511092398" target="_blank" rel="noopener">punya-u-511092398</a>
+              </p>
+            </div>
+          </div>
+        </section>
+
+      </main>
+
+      <!-- ==================================================== -->
+      <!-- 8. ENHANCED FOOTER WITH SOCIAL MEDIA ICONS            -->
+      <!-- Each social icon link uses:                           -->
+      <!--  - data-platform for per-brand hover colors           -->
+      <!--  - data-label for accessible tooltip via CSS ::after  -->
+      <!--  - aria-label for screen reader accessibility         -->
+      <!-- ====================================================== -->
+      <footer class="site-footer" role="contentinfo">
+        <div class="container">
+
+          <!-- Social icon row: pixel-art square icons with brand hover colors -->
+          <div class="footer-social-row" aria-label="Social media and contact links">
+            <!-- GitHub: links to punyau27 profile -->
+            <a
+              href="https://github.com/punyau27"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              data-platform="github"
+              data-label="GitHub"
+              aria-label="Visit U Punya's GitHub profile (@punyau27)"
+            >
+              🐙
+            </a>
+
+            <!-- LinkedIn: links to professional profile -->
+            <a
+              href="https://linkedin.com/in/punya-u-511092398"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              data-platform="linkedin"
+              data-label="LinkedIn"
+              aria-label="Visit U Punya's LinkedIn profile"
+            >
+              💼
+            </a>
+
+            <!-- Email: opens mail client -->
+            <a
+              href="mailto:punyau23@gmail.com"
+              class="footer-social-link"
+              data-platform="email"
+              data-label="Email"
+              aria-label="Send email to punyau23@gmail.com"
+            >
+              ✉
+            </a>
+
+            <!-- Twitter/X: placeholder link -->
+            <a
+              href="https://twitter.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              data-platform="twitter"
+              data-label="Twitter / X"
+              aria-label="Visit U Punya on Twitter / X"
+            >
+              🐦
+            </a>
+
+            <!-- Phone/WhatsApp -->
+            <a
+              href="tel:+918431772268"
+              class="footer-social-link"
+              data-platform="phone"
+              data-label="+91 8431772268"
+              aria-label="Call U Punya at +91 8431772268"
+            >
+              📞
+            </a>
+          </div>
+
+          <!-- Footer quick-nav links -->
+          <ul class="footer-links">
+            <li><a href="#hero">[Home]</a></li>
+            <li><a href="#about">[About]</a></li>
+            <li><a href="#skills">[Skills]</a></li>
+            <li><a href="#timeline">[Timeline]</a></li>
+            <li><a href="#projects">[Projects]</a></li>
+            <li><a href="#video-showcase">[Showcase]</a></li>
+            <li><a href="#testimonials">[Reviews]</a></li>
+            <li><a href="#chat">[Chat]</a></li>
+            <li><a href="#contact">[Contact]</a></li>
+          </ul>
+
+          <p class="footer-tagline">B.E. Data Science &bull; Adichunchanagiri Institute of Technology &bull; 2024</p>
+          <p>&copy; <span id="current-year">2026</span> U PUNYA. ALL RIGHTS RESERVED.</p>
+
+          <!-- Back to top button with hover animation -->
+          <a href="#hero" class="footer-back-top" aria-label="Scroll back to top of page">
+            ▲ BACK TO TOP
+          </a>
+
+        </div>
+      </footer>
+    </div>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT: THEME, DRAWER, SCROLLSPY, CHAT, MODAL LOGIC  -->
+  <!-- ======================================================== -->
+  <script>
+    // 1. Dynamic Year
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // 2. Theme Detection & Media Query Toggle
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const themeLabel = document.getElementById('theme-label');
+    const themeSystemBadge = document.getElementById('theme-system-badge');
+    const htmlElement = document.documentElement;
+    const systemDarkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function getEffectiveTheme() {
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (savedTheme) return savedTheme;
+      return systemDarkModeQuery.matches ? 'dark' : 'light';
+    }
+
+    function syncThemeUI() {
+      const hasManualOverride = localStorage.getItem('portfolio-theme') !== null;
+      const currentTheme = getEffectiveTheme();
+      const isDark = currentTheme === 'dark';
+
+      if (hasManualOverride) {
+        htmlElement.setAttribute('data-theme', currentTheme);
+      } else {
+        htmlElement.removeAttribute('data-theme');
+      }
+
+      themeToggleBtn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      themeIcon.textContent = isDark ? '🌙' : '☀️';
+      themeLabel.textContent = isDark ? 'Night: ON' : 'Day: ON';
+
+      if (!hasManualOverride) {
+        themeSystemBadge.textContent = systemDarkModeQuery.matches ? '[OS:DARK]' : '[OS:LIGHT]';
+      } else {
+        themeSystemBadge.textContent = '[CUSTOM]';
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      const currentEffective = getEffectiveTheme();
+      const newTheme = currentEffective === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('portfolio-theme', newTheme);
+      htmlElement.setAttribute('data-theme', newTheme);
+      syncThemeUI();
+    });
+
+    systemDarkModeQuery.addEventListener('change', () => {
+      if (!localStorage.getItem('portfolio-theme')) {
+        syncThemeUI();
+      }
+    });
+
+    syncThemeUI();
+
+    // 3. Mobile Vertical Navbar Toggle & Backdrop
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const verticalNav = document.getElementById('vertical-nav');
+    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+    const navLinks = document.querySelectorAll('.nav-menu-link');
+
+    function toggleMobileMenu(open) {
+      const isOpen = open !== undefined ? open : !verticalNav.classList.contains('open');
+      if (isOpen) {
+        verticalNav.classList.add('open');
+        sidebarBackdrop.classList.add('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        mobileMenuToggle.textContent = '[ ✖ CLOSE ]';
+      } else {
+        verticalNav.classList.remove('open');
+        sidebarBackdrop.classList.remove('active');
+        mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        mobileMenuToggle.textContent = '[ ☰ MENU ]';
+      }
+    }
+
+    mobileMenuToggle.addEventListener('click', () => toggleMobileMenu());
+    sidebarBackdrop.addEventListener('click', () => toggleMobileMenu(false));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (verticalNav.classList.contains('open')) {
+          toggleMobileMenu(false);
+        }
+        closeProjectModal();
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 900) {
+          toggleMobileMenu(false);
+        }
+      });
+    });
+
+    // 4. ScrollSpy: Highlight Active Link in Vertical Navbar
+    const sections = document.querySelectorAll('section[id]');
+    
+    function updateActiveNavLink() {
+      const scrollPos = window.scrollY + 200;
+      let currentSectionId = '';
+
+      sections.forEach(sec => {
+        const top = sec.offsetTop;
+        const height = sec.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSectionId = sec.getAttribute('id');
+        }
+      });
+
+      if (currentSectionId) {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          link.removeAttribute('aria-current');
+          if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+          }
+        });
+      }
+    }
+
+    window.addEventListener('scroll', updateActiveNavLink, { passive: true });
+    updateActiveNavLink();
+
+    // 5. Skills Category Filter Logic
+    const skillFilterBtns = document.querySelectorAll('.skill-filter-btn');
+    const skillCategoryGroups = document.querySelectorAll('.skills-category-group');
+
+    skillFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        skillFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-filter');
+
+        skillCategoryGroups.forEach(group => {
+          if (filterValue === 'all' || group.getAttribute('data-category') === filterValue) {
+            group.style.display = 'block';
+            setTimeout(() => { group.style.opacity = '1'; }, 10);
+          } else {
+            group.style.opacity = '0';
+            setTimeout(() => { group.style.display = 'none'; }, 200);
+          }
+        });
+      });
+    });
+
+    // 6. Timeline Category Filter Logic
+    const timelineFilterBtns = document.querySelectorAll('.timeline-filter-btn');
+    const timelineItems = document.querySelectorAll('.timeline-item');
+
+    timelineFilterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        timelineFilterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterValue = btn.getAttribute('data-timeline-filter');
+
+        timelineItems.forEach(item => {
+          const itemType = item.getAttribute('data-timeline-type');
+          if (filterValue === 'all' || itemType === filterValue) {
+            item.style.display = 'flex';
+            setTimeout(() => { item.style.opacity = '1'; }, 10);
+          } else {
+            item.style.opacity = '0';
+            setTimeout(() => { item.style.display = 'none'; }, 200);
+          }
+        });
+      });
+    });
+
+    // ========================================================
+    // 7. PROJECT DETAILS MODAL & THUMBNAIL CONNECTION LOGIC
+    // ========================================================
+    // Repository of comprehensive project details mapped by ID
+    const projectDatabase = {
+      'project-1': {
+        title: 'Multi-Paradigm Software Engine',
+        category: 'CORE SOFTWARE & SYSTEMS',
+        status: 'PRODUCTION READY',
+        banner: 'project-code.jpg',
+        summary: 'A unified engineering architecture engineered across procedural C, object-oriented Java, and Python. The system handles memory-efficient data serialization, modular class inheritance pipelines, and automated performance testing.',
+        features: [
+          'Engineered custom memory allocation and pointer-level data parsing in C for peak efficiency.',
+          'Built robust Object-Oriented application core in Java implementing Factory and Singleton patterns.',
+          'Developed automated Python validation scripts to stress-test throughput and detect memory leaks.',
+          'Implemented defensive exception handling and cross-module logging.'
+        ],
+        techTags: ['Java 17', 'C99', 'Python 3', 'OOP Architecture', 'Data Structures', 'Git'],
+        repo: 'https://github.com/punyau27'
+      },
+      'project-2': {
+        title: 'DataSense – Predictive Analytics & ML Pipeline',
+        category: 'DATA SCIENCE & MACHINE LEARNING',
+        status: 'COMPLETED & BENCHMARKED',
+        banner: 'project-analytics.jpg',
+        summary: 'A complete end-to-end data analytics and predictive machine learning pipeline designed to clean, normalize, explore, and model complex multi-feature datasets with actionable visual outputs.',
+        features: [
+          'Handled dataset preprocessing, null imputation, categorical encoding, and outlier mitigation with Pandas and NumPy.',
+          'Conducted in-depth Exploratory Data Analysis (EDA) producing correlation heatmaps and distribution histograms.',
+          'Trained and validated baseline classification algorithms using Scikit-Learn with cross-validation.',
+          'Achieved high precision/recall metrics evaluated through ROC-AUC score curves.'
+        ],
+        techTags: ['Python', 'Pandas', 'NumPy', 'Scikit-Learn', 'Matplotlib', 'Data Modeling'],
+        repo: 'https://github.com/punyau27'
+      },
+      'project-3': {
+        title: 'AlgoForge – Interactive Algorithms & Data Structures Visualizer',
+        category: 'ALGORITHMS & GRAPH THEORY',
+        status: 'ACTIVE DEMO',
+        banner: 'project-algo.jpg',
+        summary: 'An interactive algorithm simulator designed to help engineers visualize classical graph searches, shortest-path computations, tree rebalancing, and sorting procedures in real time.',
+        features: [
+          'Visualizes A* and Dijkstra pathfinding on custom maze grids with dynamic obstacle weights.',
+          'Interactive Binary Search Tree (BST) and Heap node insertion, deletion, and tree rotations.',
+          'Real-time asymptotic Big-O runtime comparisons across QuickSort, MergeSort, and TimSort.',
+          'Step-by-step playback controls with variable execution speeds and call-stack inspection.'
+        ],
+        techTags: ['Java', 'Graph Algorithms', 'Dijkstra', 'Sorting Trees', 'Asymptotic Big-O'],
+        repo: 'https://github.com/punyau27'
+      },
+      'project-4': {
+        title: 'Relational Inventory & Database Management Engine',
+        category: 'DATABASES & BACKEND',
+        status: 'PRODUCTION TESTED',
+        banner: 'project-db.jpg',
+        summary: 'A robust relational database management and inventory control solution featuring Third Normal Form (3NF) normalization, multi-table foreign key relationships, and ACID transactional integrity.',
+        features: [
+          'Normalized relational schema to 3NF eliminating data redundancy and ensuring referential integrity.',
+          'Crafted complex SQL queries utilizing subqueries, window functions, and multi-table inner/outer joins.',
+          'Connected Java backend service via JDBC with prepared statements to prevent SQL injection.',
+          'Implemented indexing strategies delivering sub-millisecond query response on indexed search keys.'
+        ],
+        techTags: ['SQL', 'MySQL', 'Java JDBC', 'Relational Schema', 'ACID Transactions', 'Database 3NF'],
+        repo: 'https://github.com/punyau27'
+      }
+    };
+
+    const projectModal = document.getElementById('project-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalBannerImg = document.getElementById('modal-banner-img');
+    const modalCategory = document.getElementById('modal-category');
+    const modalStatus = document.getElementById('modal-status');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSummary = document.getElementById('modal-summary');
+    const modalFeatures = document.getElementById('modal-features');
+    const modalTechTags = document.getElementById('modal-tech-tags');
+    const modalRepoLink = document.getElementById('modal-repo-link');
+
+    let lastFocusedElement = null;
+
+    // =========================================================================
+    // MODAL OPEN CONTROLLER: CONNECTS CLICKED THUMBNAIL TO ITS PROJECT DETAIL
+    // How the connection works:
+    // 1. The caller passes `projectId` (e.g. 'project-1', 'project-2', etc.)
+    //    obtained from the thumbnail element's `data-project-target` attribute.
+    // 2. The function accesses `projectDatabase[projectId]` to fetch the matching
+    //    project metadata: banner image, title, category, status, summary,
+    //    engineering features list, tech tags, and GitHub repository URL.
+    // 3. The modal dialog DOM elements are populated with this specific project's data.
+    // 4. The modal dialog (#project-modal) is set to 'active', displaying the detail view.
+    // =========================================================================
+    function openProjectModal(projectId, triggerElement = null) {
+      const data = projectDatabase[projectId];
+      if (!data) return;
+
+      if (triggerElement) {
+        lastFocusedElement = triggerElement;
+      }
+
+      modalBannerImg.src = data.banner;
+      modalBannerImg.alt = `Preview for ${data.title}`;
+      modalCategory.textContent = data.category;
+      modalStatus.innerHTML = `<span class="blinking-dot" aria-hidden="true"></span> ${data.status}`;
+      modalTitle.textContent = data.title;
+      modalSummary.textContent = data.summary;
+
+      // Populate features bullet points
+      modalFeatures.innerHTML = '';
+      data.features.forEach(feat => {
+        const li = document.createElement('li');
+        li.innerHTML = `<span class="bullet">▶</span> <span>${feat}</span>`;
+        modalFeatures.appendChild(li);
+      });
+
+      // Populate tech stack tags
+      modalTechTags.innerHTML = '';
+      data.techTags.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'project-tech-tag';
+        span.textContent = tag;
+        modalTechTags.appendChild(span);
+      });
+
+      modalRepoLink.href = data.repo;
+
+      // Show modal & freeze body scroll
+      projectModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      modalCloseBtn.focus();
+    }
+
+    // Function to close the modal and return focus to thumbnail trigger
+    function closeProjectModal() {
+      projectModal.classList.remove('active');
+      document.body.style.overflow = '';
+      if (lastFocusedElement) {
+        lastFocusedElement.focus();
+      }
+    }
+
+    // =========================================================================
+    // EVENT BINDINGS: CONNECT ALL THUMBNAILS & DETAIL BUTTONS TO MODAL VIEW
+    // Every project thumbnail (.project-thumb-box) and detail button
+    // (.project-btn-details) carries a `data-project-target` attribute corresponding
+    // to a key in `projectDatabase`. The loop below attaches both mouse click
+    // and accessible keyboard (Enter / Space) listeners.
+    // =========================================================================
+    document.querySelectorAll('[data-project-target]').forEach(trigger => {
+      // Click event on thumbnail or details button
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = trigger.getAttribute('data-project-target');
+        openProjectModal(targetId, trigger);
+      });
+
+      // Keyboard Accessibility: Enter & Space trigger thumbnail modal
+      trigger.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const targetId = trigger.getAttribute('data-project-target');
+          openProjectModal(targetId, trigger);
+        }
+      });
+    });
+
+    // Close on [ ✖ CLOSE ] button click
+    modalCloseBtn.addEventListener('click', closeProjectModal);
+    
+    // Close on clicking backdrop outside modal card
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) {
+        closeProjectModal();
+      }
+    });
+
+    // Close on Escape key press for accessible navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal.classList.contains('active')) {
+        closeProjectModal();
+      }
+    });
+
+    // Close on contact link click within modal
+    document.getElementById('modal-contact-link').addEventListener('click', closeProjectModal);
+
+    // ========================================================
+    // 8. INTERACTIVE PIXEL CHAT TERMINAL
+    // ========================================================
+    // HOW TO INTEGRATE AN AI API (e.g. OpenAI GPT):
+    // -------------------------------------------------
+    // 1. Replace the `generateBotReply()` function body with an
+    //    `async` function that calls your preferred AI endpoint.
+    // 2. Example OpenAI integration (requires your API key):
+    //
+    //    async function generateBotReply(question) {
+    //      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+    //        method: 'POST',
+    //        headers: {
+    //          'Content-Type': 'application/json',
+    //          'Authorization': `Bearer YOUR_OPENAI_API_KEY`  // <-- replace with your key
+    //        },
+    //        body: JSON.stringify({
+    //          model: 'gpt-3.5-turbo',
+    //          messages: [
+    //            { role: 'system', content: 'You are U Punya, a software engineer. Answer professionally.' },
+    //            { role: 'user', content: question }
+    //          ],
+    //          max_tokens: 120
+    //        })
+    //      });
+    //      const data = await response.json();
+    //      return data.choices[0].message.content.trim();
+    //    }
+    //
+    // 3. Make `handleChat(message)` an async function and await the reply.
+    // 4. Never expose your API key in client-side code for production!
+    //    Use a backend proxy (Node/Express, Cloudflare Worker, etc.).
+    // ========================================================
+
+    const chatLog = document.getElementById('chat-log');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-user-input');
+    const promptChips = document.querySelectorAll('.prompt-chip');
+
+    // Adds a message bubble to the chat log
+    function addChatMessage(author, text, isUser = false) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = `chat-msg ${isUser ? 'chat-msg-user' : 'chat-msg-bot'}`;
+      
+      const authorSpan = document.createElement('span');
+      authorSpan.className = 'chat-msg-author';
+      authorSpan.textContent = author;
+      
+      const textNode = document.createTextNode(text);
+      
+      msgDiv.appendChild(authorSpan);
+      msgDiv.appendChild(textNode);
+      chatLog.appendChild(msgDiv);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    }
+
+    // Typing indicator: shows "..." while bot is "thinking"
+    function showTypingIndicator() {
+      const indicator = document.createElement('div');
+      indicator.className = 'chat-msg chat-msg-bot';
+      indicator.id = 'typing-indicator';
+      indicator.innerHTML = '<span class="chat-msg-author">[PUNYA_BOT]</span> ▋▋▋ thinking...';
+      chatLog.appendChild(indicator);
+      chatLog.scrollTop = chatLog.scrollHeight;
+      return indicator;
+    }
+
+    function removeTypingIndicator() {
+      const indicator = document.getElementById('typing-indicator');
+      if (indicator) indicator.remove();
+    }
+
+    // -------------------------------------------------------
+    // LOCAL BOT REPLY LOGIC
+    // Replace this function's body with an AI API call when ready
+    // -------------------------------------------------------
+    function generateBotReply(question) {
+      const q = question.toLowerCase();
+      if (q.includes('language') || q.includes('skill') || q.includes('stack')) {
+        return "I specialize in C, Java, and Python, with a strong focus on object-oriented programming, data structures, and database principles.";
+      } else if (q.includes('education') || q.includes('college') || q.includes('degree')) {
+        return "I hold a B.E. in Data Science from Adichunchanagiri Institute of Technology, with pre-university studies from BGS.";
+      } else if (q.includes('project') || q.includes('portfolio') || q.includes('work')) {
+        return "Check out the Featured Projects section! I've built a Multi-Paradigm Engine in Java/C/Python, a DataSense predictive ML pipeline, an Algorithm Visualizer, and an inventory DBMS.";
+      } else if (q.includes('hire') || q.includes('job') || q.includes('available') || q.includes('role')) {
+        return "Yes! I am actively looking for software engineering and data science opportunities. Reach out via email: punyau23@gmail.com.";
+      } else if (q.includes('contact') || q.includes('email') || q.includes('phone')) {
+        return "You can reach me directly at punyau23@gmail.com or call +91 8431772268.";
+      } else if (q.includes('video') || q.includes('demo') || q.includes('reel')) {
+        return "You can watch my engineering demo reel in the Showcase section above! It covers my projects, coding workflow, and technical highlights.";
+      } else if (q.includes('testimonial') || q.includes('review') || q.includes('feedback')) {
+        return "Check out the Testimonials section to see what faculty, classmates, and collaborators have said about working with me!";
+      } else {
+        return `Received transmission: "${question}". Thank you for checking out my portfolio! Feel free to reach out directly via the Contact section.`;
+      }
+    }
+
+    // Handles sending a message (user input or chip click)
+    function handleChat(message) {
+      addChatMessage('[VISITOR]', message, true);
+      const indicator = showTypingIndicator();
+
+      // Simulated delay for local replies (replace setTimeout with async/await for API)
+      setTimeout(() => {
+        removeTypingIndicator();
+        const reply = generateBotReply(message);
+        addChatMessage('[PUNYA_BOT]', reply, false);
+      }, 650); // Slightly longer delay for a more natural feel
+    }
+
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const message = chatInput.value.trim();
+      if (!message) return;
+      chatInput.value = '';
+      handleChat(message);
+    });
+
+    promptChips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const question = chip.getAttribute('data-question');
+        handleChat(question);
+      });
+    });
+
+    // ========================================================
+    // 9. SCROLL-REVEAL ANIMATION SYSTEM
+    // Uses IntersectionObserver to watch `.reveal` elements.
+    // When they enter the viewport, the `visible` class is added,
+    // triggering the CSS fade+slide-up transition defined in styles.
+    // ========================================================
+    const revealElements = document.querySelectorAll('.reveal');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Stop observing once revealed (performance optimization)
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      // Start animating when 12% of the element is visible
+      threshold: 0.12,
+      // Trigger slightly before elements are fully on-screen
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ========================================================
+    // 10. NAV SHRINK-ON-SCROLL (desktop)
+    // Adds a subtle scale reduction to the brand logo when user
+    // scrolls down, giving a premium app-like depth feel.
+    // ========================================================
+    const navBrandBox = document.querySelector('.nav-brand-box');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        navBrandBox?.classList.add('scrolled');
+      } else {
+        navBrandBox?.classList.remove('scrolled');
+      }
+    }, { passive: true });
+
+  </script>
+
+</body>
+</html>
